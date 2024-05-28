@@ -23,7 +23,7 @@ Transaction.init(
     },
     return_date: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
       defaultValue: DataTypes.NOW
     },
     employee_id: {
@@ -33,7 +33,7 @@ Transaction.init(
         key: 'id',
       },
     },
-    items_id: {
+    item_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'item',
