@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMS</title>   
+</head>
+
+<body>
+
+  <header>   
+     <nav>       
+        {{#if logged_in}}   
+        <button type="button" class="nav-button btn" id="logout">Logout</button>    
+        {{/if}}
+    </nav>
+
+     <h3>Inventory Management System</h3>
+  </header>
+  
+  <main>
+    {{{ body }}}
+  </main>  
+
+  
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+  
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{{log this}}
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Borrow Date</th>
+    <th>Return Date</th>
+    <th>Borrowed By  </th>
+    <th>Item Borrowed </th>
+  </tr>
+  <tr>
+    <td>{{id}}</td>
+    <td>{{format_date borrow_date}}</td>
+    <td>{{format_date return_date}}</td>
+    <td>{{employee.id}}-{{employee.first_name}}</td>
+    <td>{{item_id}} - {{ item.item_name }}</td>
+  </tr>  
+</table>

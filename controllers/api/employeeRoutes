@@ -1,0 +1,75 @@
+const router = require('express').Router();
+const { Employee, Transaction, Category, Item } = require('../../models');
+
+router.post('/login', async (req, res) => {
+  try {
+    console.log('*****************LOGIN ROUTE ***************************');
+    const employeeData = await Employee.findOne({
+      where: { email: req.body.email },
+    });
+
+    if (!employeeData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    const validPassword = await employeeData.checkPassword(req.body.password);
+    console.log(validPassword);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    const validRole = true;
+    const isRoleAdmin = req.body.isAdmin === 'true';
+    if (employeeData.get({ plain: true }).is_admin !== isRoleAdmin) {
+      validRole = false;
+    }
+
+    if (!validRole) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    req.session.user_id = employeeData.id;
+    req.session.is_admin = employeeData.is_admin;
+    req.session.logged_in = true;
+
+    res.json({ employee: employeeData, message: 'You are now logged in!' });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.get('/', async (req, res) => {
+  console.log('EMPLOYEE DASHBORD REQUEST');
+  try {
+    const employeeTransactions = await Transaction.findAll({
+      where: {
+        employee_id: req.session.user_id,
+      },
+      include: [{ model: Employee }, { model: Item }],
+    });
+
+    // Serialize user data so templates can read it
+    const employeeTransactionData = employeeTransactions.map((transaction) =>
+      transaction.get({ plain: true })
+    );
+
+    res.render('employee-dashboard', {
+      employeeTransactionData: employeeTransactionData,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+module.exports = router;
