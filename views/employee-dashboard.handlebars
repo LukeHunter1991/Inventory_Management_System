@@ -1,6 +1,22 @@
 {{log this}}
 <h1>Employee Dashboard</h1>
+
+
+<table>
+    <h4>My Borrowed Items</h4>
+  <tr>
+    <th>Borrow ID</th>
+    <th>Item Name </th>
+    <th>Item ID </th>
+    <th>Item Description </th>
+    <th>Borrow Date</th>
+    <th>Return Date</th>  
+   
+  </tr>
+  
 {{#each employeeTransactionData}}
 {{> employee-transaction-details}}
 {{/each}}
-
+    
+ 
+</table>

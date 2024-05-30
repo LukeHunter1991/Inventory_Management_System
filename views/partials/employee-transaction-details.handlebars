@@ -1,16 +1,10 @@
 {{log this}}
-
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Borrow Date</th>
-    <th>Return Date</th>   
-    <th>Item Borrowed </th>
-  </tr>
   <tr>
     <td>{{id}}</td>
+    <td>{{item.item_name }} </td>
+    <td>{{item_id}} </td>
+    <td>{{item.item_description}} </td>
     <td>{{format_date borrow_date}}</td>
-    <td>{{format_date return_date}}</td>   
-    <td>{{item_id}} - {{ item.item_name }}</td>
+    <td>{{format_date return_date}}</td>       
+    
   </tr>  
-</table>
