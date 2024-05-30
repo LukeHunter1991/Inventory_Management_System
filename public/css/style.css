@@ -1,0 +1,246 @@
+@charset "utf-8";
+/* CSS Document */
+/* =============================================================
+ 	First Name		  : Strahinja     					    
+ 	Last Name		    : Popovic					            
+ 	Developer Name  : codexdev		        
+ 	WebMaster Email	: spope.mails@gmail.com               
+ ============================================================== */
+
+/* ***************************************************************************************** */
+/* Definition of the css stylingn variables ************************************************ */
+/* ***************************************************************************************** */
+
+:root {
+  --aqua: aqua;
+  --dark: black;
+  --light: white; 
+  --success: rgb(3, 102, 3);
+  --error: rgb(170, 28, 28);
+  --gray: rgb(240, 240, 240);
+  --gray-dark: rgb(23,23,23);
+  --naval-blue: rgba(1,33,55,1.00);
+  --electron-blue: rgb(25, 145, 224);
+  --custom-gray: rgb(175, 191, 207);
+  --light-web-blue: rgb(12, 209, 235);
+}
+
+body {
+  width: 50%;
+  margin: 0 auto;
+  font-size: 24px;
+  min-width: 600px;
+  background-color: var(--light);
+  font-family: "Roboto", sans-serif;
+}
+
+div#format {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 40px auto 0 auto;
+  background-color: var(--gray);
+  border: 3px solid var(--naval-blue);
+}
+
+div#header {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+div#header section#header-main {
+  width: 100%;
+  font-size: 50px;
+  text-align: left;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  color: var(--naval-blue);
+  border: 1px solid purple;
+  margin: 20px auto 50px auto;
+  font-family: "Roboto", sans-serif;
+}
+
+div#header section#header-main p span {
+  color: var(--electron-blue);
+}
+
+div#header section#header-main p#logoff a {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--electron-blue);
+}
+
+div#top {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid green;
+  background-color: var(--gray);
+}
+
+div#top section#input-login {
+  width: 50%;
+  height: auto;
+  display: flex;
+  margin: auto auto;
+  flex-direction: column;
+  border: 1px solid blue;
+  background-color: var(--gray);
+}
+
+div#top section#input-login p#adminTitle {
+  font-size: 30px;
+  text-align: center;
+  font-weight: bolder;
+  margin: 15px 0 15px 0;
+  color: var(--naval-blue);
+  font-family: "Roboto", sans-serif;
+}
+div#top section#input-login section#select {
+  display: flex;
+  flex-direction: column;
+}
+
+div#top section#input-login section#select p {
+  font-size: 20px;
+  margin: 5px 10% 5px 10%;
+}
+
+div#top section#input-login section#select select {
+  width: 80%;
+  margin-left: 10%;
+  font-weight: bolder;
+  color: var(--naval-blue);
+}
+
+div#top section#input-login section#select-admin {
+  display: flex;
+  flex-direction: row;
+}
+
+div#top section#input-login section#select-admin p#selectType {
+  width: auto;
+  font-size: 20px;
+  font-weight: bolder;
+  margin: 5px 5px 5px 10%;
+  color: var(--naval-blue);
+}
+
+div#top section#input-login section#select-admin select {
+  width: auto;
+  font-weight: bolder;
+  color: var(--naval-blue);
+}
+
+div#top section#input-login p#link {
+  font-size: 20px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+div#top section#input-login p#link a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+div#top section#input-login select {
+  width: 50%;
+  height: auto;
+}
+
+label {
+  font-size: 20px;
+  margin: 0 0 0 10%;
+  font-weight: bolder;
+  color: var(--naval-blue);
+  font-family: "Roboto", sans-serif;
+}
+
+input[type=text], input[type=password] {
+  width: 80%;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 5px;
+  margin: 10px 10% 10px 10%;
+  padding: 5px 5px 10px 5px;
+  font-family: "Roboto", sans-serif;
+  border: 2px solid var(--gray-dark);
+}
+
+input::placeholder {
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: "Roboto", sans-serif;
+}
+
+button#submit {
+  width: 80%;
+  height: 45px;
+  font-size: 20px;
+  color: var(--light);
+  border-radius: 5px;
+  font-weight: bolder;
+  margin: 0 10% 15px 10%;
+  font-family: "Roboto", sans-serif;
+  border: 2px solid var(--gray-dark);
+  background-color: var(--electron-blue);
+  
+}
+
+button#submit {
+  margin-top: 10px;
+}
+
+span#shevron {
+  font-family: 'furore', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button#submit:hover, button#clear:hover {
+  color: var(--naval-blue);
+  border: 3px solid var(--naval-blue);
+}
+
+footer#bottom {
+  width: 100%;
+  height: auto;
+  line-height: 2;
+  text-align: center;
+  margin: 50px auto 0 auto;
+  border: 1px solid orange;
+  background-color: var(--gray);
+  font-family: "Roboto", sans-serif;
+}
+
+footer#bottom p span {
+  color: var(--electron-blue);
+}
+
+footer#bottom p {
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  color: var(--naval-blue);
+}
+
+footer#bottom p:first-child {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+}
+
+@media only screen and (max-width: 2500px) {
+  div#header section#header-main {
+    font-size: 50px;
+    text-align: left;
+  }
+}
+
+@media only screen and (max-width: 1550px) {
+  div#header section#header-main {
+    font-size: 60px;
+    text-align: left;
+  }
+}
