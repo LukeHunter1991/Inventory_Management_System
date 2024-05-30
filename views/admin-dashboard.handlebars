@@ -1,8 +1,33 @@
-<h1>Borrowed Items</h1>
+
+<table>
+    <h4>Borrowed Items</h4>
+  <tr>
+    <th>ID</th>
+    <th>Borrow Date</th>
+    <th>Return Date</th>
+    <th>Borrowed By  </th>
+    <th>Item Borrowed </th>
+  </tr>
+  
 {{#each transactionData}}
 {{> transaction-details}}
 {{/each}}
-<h1>UnBorrowed Items</h1>
+    
+ 
+</table>
+<h4>UnBorrowed Items</h4>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Item Name</th>
+    <th>Description</th>  
+    <th>Is Available</th>  
+  </tr>
+  
+  
 {{#each itemData}}
 {{> item-details}}
 {{/each}}
+    
+ 
+</table>
