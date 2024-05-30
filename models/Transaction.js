@@ -24,7 +24,6 @@ Transaction.init(
     return_date: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: DataTypes.NOW
     },
     employee_id: {
       type: DataTypes.INTEGER,
