@@ -13,17 +13,21 @@ router.get('/', async (req, res) => {
       transaction.get({ plain: true })
     );
 
-    const items = await Item.findAll({});
-    const itemData = items.map((item) => item.get({ plain: true }));
+    const items = await Item.findAll({
+      where: {
+        is_available: true,
+      },
+    });
+    const unborrowedItemData = items.map((item) => item.get({ plain: true }));
 
-    const borrowedItemIds = [];
-    for (let index = 0; index < transactionData.length; index++) {
-      borrowedItemIds.push(transactionData[index].item_id);
-    }
+    // const borrowedItemIds = [];
+    // for (let index = 0; index < transactionData.length; index++) {
+    //   borrowedItemIds.push(transactionData[index].item_id);
+    // }
 
-    const unborrowedItemData = itemData.filter(
-      (x) => !borrowedItemIds.includes(x.id)
-    );
+    // const unborrowedItemData = itemData.filter(
+    //   (x) => !borrowedItemIds.includes(x.id)
+    // );
 
     res.render('admin-dashboard', {
       transactionData: transactionData,

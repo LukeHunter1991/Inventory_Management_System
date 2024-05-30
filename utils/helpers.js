@@ -12,8 +12,11 @@ module.exports = {
     return date.toLocaleTimeString();
   },
   format_date: (date) => {
-    const originalDate = dayjs(date);
-    const newDate = originalDate.format('M/D/YYYY');
-    return newDate;
+    if (date != null) {
+      const originalDate = dayjs(date);
+      const newDate = originalDate.format('M/D/YYYY');
+      return newDate;
+    }
+    return;
   },
 };
