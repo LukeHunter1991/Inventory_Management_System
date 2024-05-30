@@ -5,7 +5,6 @@ const sequelize = require('../config/connection');
 class Employee extends Model {
   // This instance method compares the user's input with the user's hashed password
   checkPassword(loginPw) {
-    console.log('Hello in checkpassword');
     return bcrypt.compareSync(loginPw, this.password);
   }
 }

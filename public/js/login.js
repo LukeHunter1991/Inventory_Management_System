@@ -1,7 +1,6 @@
 function checkboxToggle() {
   var isAdmin = document.getElementById('isadmin-login');
   isAdmin.value = isAdmin.checked;
-  alert(isAdmin.value);
 }
 
 const loginFormHandler = async (event) => {
@@ -11,8 +10,6 @@ const loginFormHandler = async (event) => {
   const password = document.querySelector('#password-login').value.trim();
   const isAdmin = document.querySelector('#isadmin-login').value.trim();
 
-  alert(email);
-
   if (email && password && isAdmin) {
     const response = await fetch('/api/employee/login', {
       method: 'POST',
@@ -21,17 +18,14 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      alert('Response ok');
-      alert(isAdmin);
       if (isAdmin === 'true') {
-        alert('ADMIN');
         document.location.replace('/api/admin');
       } else {
-        alert('EMP');
         document.location.replace('/api/employee');
       }
     } else {
-      alert('Failed to log in');
+      const jsonData = await response.json();
+      alert(JSON.stringify(jsonData));
       alert(response.statusText);
     }
   }

@@ -9,32 +9,34 @@ router.post('/login', async (req, res) => {
     });
 
     if (!employeeData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+      res.status(400).json({
+        message: 'Incorrect email or password or role, please try again',
+      });
       return;
     }
 
     const validPassword = await employeeData.checkPassword(req.body.password);
-    console.log(validPassword);
 
     if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+      res.status(400).json({
+        message: 'Incorrect email or password or role, please try again',
+      });
       return;
     }
 
-    const validRole = true;
+    let validRole = true;
     const isRoleAdmin = req.body.isAdmin === 'true';
-    if (employeeData.get({ plain: true }).is_admin !== isRoleAdmin) {
+
+    const emp = employeeData.get({ plain: true });
+
+    if (emp.is_admin != isRoleAdmin) {
       validRole = false;
     }
 
     if (!validRole) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+      res.status(400).json({
+        message: 'Incorrect email or password or role, please try again',
+      });
       return;
     }
 
