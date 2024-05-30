@@ -1,25 +1,32 @@
-<h2>Login</h2>
-
-<form class="form login-form">
-  <div class="form-group">
-    <label for="email-login">email:</label>
-    <input class="form-input" type="text" id="email-login" />
-  </div>
-  <div class="form-group">
-    <label for="password-login">password:</label>
-    <input class="form-input" type="password" id="password-login" />
-  </div>
-  <div class="form-group">
-    <label for="isAdmin-login">isAdmin:</label>
-    
-     <input class="form-input" type="checkbox" id="isadmin-login" name ="isadmin" onclick="checkboxToggle()" value="false"/>
-     
-     
-  </div>
-
-  <div class="form-group">
-    <button class="btn btn-primary" type="submit">login</button>
-  </div>
-</form>
+<div id="format">
+        <div id="header">
+            <section id="header-main">
+                <p>Inventory<br />Management<br /><span>System</span></p>
+            </section>
+        </div>
+        <div id="top">
+            <section id="input-login">
+                <label for="username">Username/ Email</label>
+                <input type="text" id="username" name="username" placeholder="Insert username or email"
+                    autocomplete="username" required />
+                <div id="error-message-username"></div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Insert password"
+                    autocomplete="current-password" required />
+                <div id="error-message-password"></div>
+                <button type="button" id="submit" name="submit" value="">Login<span id="shevron"> >>></span></button>
+                <p id="link"><a href="http://localhost:5500/index.html">client </a>- OR -<a
+                        href="http://localhost:5500/admin-login.html"> admin</a></p>
+            </section>
+        </div>
+        <footer id="bottom">
+            <p>InventoryManagementSystem-<span>IMS</span></p>
+            <p>Copyright&copy;
+                <script
+                    type="text/javascript"> var date = new Date(); var year = date.getFullYear(); document.write(year);</script>
+                ims-project-group. All rights reserved.
+            </p>
+        </footer>
+    </div>
 
 <script src="/js/login.js"></script>
