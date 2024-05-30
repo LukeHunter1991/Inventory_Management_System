@@ -13,6 +13,20 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/signup', (req, res) => {
+  // If a session exists, redirect the request to the homepage
+
+  if (req.session.logged_in && req.session.is_admin) {
+    res.redirect('/api/admin');
+    return;
+  } else if (req.session.logged_in && !req.session.is_admin) {
+    res.redirect('/api/employee');
+    return;
+  }
+
+  res.render('signup');
+});
+
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
