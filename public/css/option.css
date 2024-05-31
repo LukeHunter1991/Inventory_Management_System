@@ -7,6 +7,7 @@
     --dark: #22283C;
     --available: #D0EBD1;
     --unavailable: #FACCCA;
+    --electron-purple: #5553db;
 }
 
 body {
@@ -60,4 +61,57 @@ aside .tab a {
 
 aside .tab:hover {
     background-color: var(--tertiary);
+}
+
+.btn-no-style {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 100%;
+    transition: color 0.1s;
+    margin-left: 16px;
+    color: var(--light);
+}
+
+.pill-available {
+    background-color: var(--available);
+}
+
+
+.background {
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #EAEEFA;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.log-form {
+    width: 650px;
+    background-color: white;
+    margin: auto;
+    margin-top: 100px;
+    font-weight: bold;
+}
+
+.log-form span {
+    color: var(--electron-purple);
+    font-weight: bolder;
+}
+
+.log-form button {
+    background-color: #625fee;
+    font-weight: 700;
+}
+
+.log-form footer h6 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.log-form footer p {
+    font-size: 10.25px;
 }
