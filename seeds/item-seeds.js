@@ -16,10 +16,16 @@ const itemData = [
     category_id: 1,
   },
   {
-    item_name: ' Kogan 24" Monitor',
+    item_name: 'Kogan 24" Monitor',
     item_description: 'Full HD 100Hz Frameless FreeSync Monitor (1920 x 1080)',
     is_available: false,
     category_id: 2,
+  },
+  {
+    item_name: 'Dell XPS 13',
+    item_description: 'F13.4" FHD+ 120Hz Laptop (Intel Ultra 7)[512GB]',
+    is_available: true,
+    category_id: 1,
   },
 ];
 

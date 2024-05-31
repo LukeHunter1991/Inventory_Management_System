@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const { Employee, Transaction, Category, Item } = require('../../models');
+// Import sequelize operators. Not operator used in /inventory-history route to get not null return date
+const { Op } = require("sequelize");
+
 
 router.post('/login', async (req, res) => {
   try {
@@ -100,6 +103,57 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/current-inventory', async (req, res) => {
+  try {
+    const currentItems = await Transaction.findAll({
+      // Get transactions for relevant employee.
+      // Get's currently borrowed inventory only by ignoring transactions with a return date.
+       where: {
+         employee_id: req.session.user_id,
+         return_date: null,
+       },
+       // Nested eager loading Item and Category tables to get all item data including category.
+       include: {
+        model: Item,
+        include: [Category],
+      },
+       raw: true,
+    })
+    // Return users currently borrowed inventory.
+    res.json(currentItems);
+  } catch (err) {
+    // If try fails, return error.
+    res.sendStatus(400).json(err);
+  }
+});
+
+router.get('/inventory-history', async (req, res) => {
+  try {
+    const previousItems = await Transaction.findAll({
+      // Get transactions for relevant employee.
+      // Get's previously borrowed items only by only reteiving transactions with a return date.
+       where: {
+         employee_id: req.session.user_id,
+         // Utilises sequelize not operator to get transactions with a return date.
+         [Op.not]: {return_date: null}
+       },
+       // Nested eager loading Item and Category tables to get all item data including category.
+       include: {
+        model: Item,
+        include: [Category],
+      },
+       raw: true,
+    })
+    // Return all data in current items.
+    res.json(previousItems);
+  } catch (err) {
+    // If try fails, return error.
+    res.sendStatus(400).json(err);
+  }
+});
+
+
 
 router.post('/borrow', async (req, res) => {
 
