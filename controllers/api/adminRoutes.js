@@ -39,4 +39,37 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/viewsummary', async (req, res) => {
+  console.log('Admin Report DASHBORD REQUEST');
+  try {
+    const transactionsummary = await Transaction.count({
+      col: 'employee_id',
+      group: ['employee_id'],
+    });
+
+    const empIds = transactionsummary.map((item) => item.employee_id);
+    const employees = await Employee.findAll({
+      where: {
+        id: empIds,
+      },
+    });
+
+    const employeeData = employees.map((emp) => emp.get({ plain: true }));
+
+    const empNames = employeeData.map(
+      (item) => item.first_name + ' ' + item.last_name
+    );
+
+    const txncount = transactionsummary.map((item) => item.count);
+
+    res.render('admin-summary', {
+      empNames: empNames,
+      txncount: txncount,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

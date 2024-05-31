@@ -1,0 +1,48 @@
+<a href="/api/admin/">Back to dashboard </a>
+<div>
+  <canvas id="myChart" width="600" height="400"></canvas>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+const ctx = document.getElementById('myChart').getContext("2d");
+var labelData = "{{empNames}}";
+const xValues = labelData.split(',');
+var txncount = "{{txncount}}";
+const txnValues = txncount.split(',');
+const yValues = txnValues.map(item => parseInt(item));
+
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        visible: true, 
+        labels: xValues,
+        datasets: [
+          {
+            label: '# of Txns',
+            data: yValues,
+            borderWidth: 1,
+           borderColor: '#36A2EB', // Border color
+            backgroundColor: '#9BD0F5', // Background color
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 20,
+            min: 0,
+            ticks: {
+                stepSize: 1
+            }
+          },
+        },
+      },
+    });
+   
+</script>
