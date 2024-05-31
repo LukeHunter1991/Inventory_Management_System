@@ -1,31 +1,27 @@
-function checkboxToggle() {
-  var isAdmin = document.getElementById('isadmin-login');
-  isAdmin.value = isAdmin.checked;
-}
-
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
-  const isAdmin = document.querySelector('#isadmin-login').value.trim();
 
-  if (email && password && isAdmin) {
+  if (email && password) {
     const response = await fetch('/api/employee/login', {
       method: 'POST',
-      body: JSON.stringify({ email, password, isAdmin }),
+      body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      if (isAdmin === 'true') {
+      const jsonData = await response.json();
+
+      alert(jsonData.message);
+      /* Once the employee is authenticated, based on the role of employee: directed either to admin dashboard or employee dashboard */
+      if (jsonData.employee.is_admin === true) {
         document.location.replace('/api/admin');
       } else {
         document.location.replace('/api/employee');
       }
     } else {
-      const jsonData = await response.json();
-      alert(JSON.stringify(jsonData));
       alert(response.statusText);
     }
   }

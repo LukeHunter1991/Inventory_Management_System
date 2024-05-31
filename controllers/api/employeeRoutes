@@ -1,9 +1,17 @@
 const router = require('express').Router();
 const { Employee, Transaction, Category, Item } = require('../../models');
 // Import sequelize operators. Not operator used in /inventory-history route to get not null return date
-const { Op } = require("sequelize");
+const { Op } = require('sequelize');
 
-
+/* 
+The `/api/employee/login` endpoint
+Route to authenticate the employee and direct to dashboard based on the Role of the employee.
+ The req.body should look like this
+{
+  "email" : "allen@abc.com",
+  "password" : "123"
+}
+*/
 router.post('/login', async (req, res) => {
   try {
     console.log('*****************LOGIN ROUTE ***************************');
@@ -27,22 +35,6 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-    let validRole = true;
-    const isRoleAdmin = req.body.isAdmin === 'true';
-
-    const emp = employeeData.get({ plain: true });
-
-    if (emp.is_admin != isRoleAdmin) {
-      validRole = false;
-    }
-
-    if (!validRole) {
-      res.status(400).json({
-        message: 'Incorrect email or password or role, please try again',
-      });
-      return;
-    }
-
     req.session.user_id = employeeData.id;
     req.session.is_admin = employeeData.is_admin;
     req.session.logged_in = true;
@@ -53,6 +45,18 @@ router.post('/login', async (req, res) => {
   }
 });
 
+/* 
+The `/api/employee/signup` endpoint
+Route to create a new employee 
+ The req.body should look like this
+{   
+  "firstname": "Tom",
+  "lastname": "Allen",
+  "email" : "allen@abc.com",
+  "password" : "password123",
+  "isAdmin": "true/false",
+}
+*/
 router.post('/signup', async (req, res) => {
   try {
     // All the fields you can create and the data attached to the request body.
@@ -80,6 +84,10 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+/* 
+The `/api/employee/` endpoint
+Route to display the employee dashboard with all the borrowed items of the logged in employee. 
+*/
 router.get('/', async (req, res) => {
   console.log('EMPLOYEE DASHBORD REQUEST');
   try {
@@ -104,22 +112,26 @@ router.get('/', async (req, res) => {
   }
 });
 
+/* 
+The `/api/employee/current-inventory` endpoint
+Route to display active borrowed inventory only. 
+*/
 router.get('/current-inventory', async (req, res) => {
   try {
     const currentItems = await Transaction.findAll({
       // Get transactions for relevant employee.
       // Get's currently borrowed inventory only by ignoring transactions with a return date.
-       where: {
-         employee_id: req.session.user_id,
-         return_date: null,
-       },
-       // Nested eager loading Item and Category tables to get all item data including category.
-       include: {
+      where: {
+        employee_id: req.session.user_id,
+        return_date: null,
+      },
+      // Nested eager loading Item and Category tables to get all item data including category.
+      include: {
         model: Item,
         include: [Category],
       },
-       raw: true,
-    })
+      raw: true,
+    });
     // Return users currently borrowed inventory.
     res.json(currentItems);
   } catch (err) {
@@ -128,23 +140,28 @@ router.get('/current-inventory', async (req, res) => {
   }
 });
 
+/* 
+The `/api/employee/inventory-history` endpoint
+Route to display history of the borrowed inventory only. (Returned Items)
+*/
+
 router.get('/inventory-history', async (req, res) => {
   try {
     const previousItems = await Transaction.findAll({
       // Get transactions for relevant employee.
       // Get's previously borrowed items only by only reteiving transactions with a return date.
-       where: {
-         employee_id: req.session.user_id,
-         // Utilises sequelize not operator to get transactions with a return date.
-         [Op.not]: {return_date: null}
-       },
-       // Nested eager loading Item and Category tables to get all item data including category.
-       include: {
+      where: {
+        employee_id: req.session.user_id,
+        // Utilises sequelize not operator to get transactions with a return date.
+        [Op.not]: { return_date: null },
+      },
+      // Nested eager loading Item and Category tables to get all item data including category.
+      include: {
         model: Item,
         include: [Category],
       },
-       raw: true,
-    })
+      raw: true,
+    });
     // Return all data in current items.
     res.json(previousItems);
   } catch (err) {
@@ -153,20 +170,21 @@ router.get('/inventory-history', async (req, res) => {
   }
 });
 
-
-
+/* 
+The `/api/employee/borrow` endpoint
+Route to create a borrow item request. 
+*/
 router.post('/borrow', async (req, res) => {
-
   try {
     // Get employee id and item id to update transaction table
     const transactionData = {
       employee_id: req.session.user_id,
-      item_id: req.body.item_id
-    }
+      item_id: req.body.item_id,
+    };
 
     // Create variable to mark itema s not available
     const itemAvailable = {
-      available: false
+      available: false,
     };
 
     // Update relevant item to not available
@@ -174,19 +192,18 @@ router.post('/borrow', async (req, res) => {
       where: {
         id: req.body.item_id,
       },
-    })
+    });
 
     // Inesrt new transaction into transaction table.
     // Only need employee id and item id as borrow date is current timesatamp and return date is null.
     await Transaction.create(transactionData);
 
     res.sendStatus(200);
-
   } catch (err) {
     res.status(400).json({
-      success: false
-    })
+      success: false,
+    });
   }
-})
+});
 
 module.exports = router;
