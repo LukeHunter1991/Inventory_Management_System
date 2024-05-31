@@ -16,6 +16,12 @@ const transactionData = [
     employee_id: 2,
     item_id: 3,
   },
+  {
+    borrow_date: new Date(),
+    return_date: new Date(),
+    employee_id: 3,
+    item_id: 4,
+  },
 ];
 
 const seedTransactions = () =>
