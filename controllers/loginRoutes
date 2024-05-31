@@ -1,5 +1,9 @@
 const router = require('express').Router();
 
+/* 
+The `/login/` endpoint
+Route to display the login page. If the employee is already logged in then redirects to the dashboard based on the role. 
+*/
 router.get('/login', (req, res) => {
   // If a session exists, redirect the request to the homepage
   if (req.session.logged_in && req.session.is_admin) {
@@ -13,6 +17,10 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+/* 
+The `/signup/` endpoint
+Route to display the sign up page. If the employee is already logged in then redirects to the dashboard based on the role. 
+*/
 router.get('/signup', (req, res) => {
   // If a session exists, redirect the request to the homepage
 
@@ -27,6 +35,10 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
+/* 
+The `/logout/` endpoint
+Route to logout the employee but destroying the session. On successful logout, the login page is displayed.
+*/
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

@@ -36,18 +36,4 @@ Transaction.belongsTo(Item, {
   foreignKey: 'item_id',
 });
 
-// Item.belongsToMany(Employee, {
-//   through: {
-//     model: Transaction,
-//     unique: false,
-//   },
-// });
-
-// Employee.belongsToMany(Item, {
-//   through: {
-//     model: Transaction,
-//     unique: false,
-//   },
-// });
-
 module.exports = { Employee, Item, Category, Transaction };
