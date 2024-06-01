@@ -4,7 +4,7 @@ const { Transaction, Item, Employee, Category } = require('../../models');
 /* 
 The `/api/admin/` endpoint
 Route to display the admin dashboard with all the inventory status 
-: Borrowed Items (All employees) and Unborrowed Items
+: Borrowed Items (All employees) 
 */
 
 router.get('/', async (req, res) => {
@@ -19,16 +19,8 @@ router.get('/', async (req, res) => {
       transaction.get({ plain: true })
     );
 
-    const items = await Item.findAll({
-      where: {
-        is_available: true,
-      },
-    });
-    const unborrowedItemData = items.map((item) => item.get({ plain: true }));
-
     res.render('admin-dashboard', {
       transactionData: transactionData,
-      itemData: unborrowedItemData,
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
     });
@@ -73,6 +65,31 @@ router.get('/viewsummary', async (req, res) => {
       empNames: empNames,
       txncount: txncount,
       logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+/* 
+The `/api/admin/allitems` endpoint
+Route to display all the unborrowed items  
+: All Items (Both Available) 
+*/
+router.get('/allitems', async (req, res) => {
+  console.log('ADMIN ITEMS REQUEST');
+  try {
+    const items = await Item.findAll({
+      where: {
+        is_available: true,
+      },
+    });
+    const unborrowedItemData = items.map((item) => item.get({ plain: true }));
+
+    res.render('admin-items', {
+      itemData: unborrowedItemData,
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
     });
   } catch (err) {
     res.status(500).json(err);
