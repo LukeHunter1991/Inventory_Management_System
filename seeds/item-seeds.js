@@ -27,6 +27,25 @@ const itemData = [
     is_available: true,
     category_id: 1,
   },
+  {
+    item_name: "Macbook13",
+    item_description: "Macbook Air 13.6 M2",
+    is_available: true,
+    category_id: 1,
+  },
+  {
+    item_name: "HP Monitor",
+    item_description: "HP 24mh",
+    is_available: true,
+    category_id: 2,
+  },
+  {
+    item_name: "Keyboard",
+    item_description: "Logitec",
+    is_available: true,
+    category_id: 3,
+  },
+
 ];
 
 const seedItems = () =>
