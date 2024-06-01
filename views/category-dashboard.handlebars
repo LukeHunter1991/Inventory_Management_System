@@ -1,0 +1,29 @@
+<h2>Create New Category</h2>
+
+<form class="form category-form">
+  <div class="form-group">
+    <label for="category-name">First name:</label>
+    <input class="form-input" type="text" id="category-name" />
+  </div> 
+
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">Add Category</button>
+  </div>
+ 
+</form>
+
+
+<table>
+    <h4>Categories</h4>
+  <tr>
+    <th>ID</th>
+    <th>Category Name</th>    
+  </tr>
+  
+{{#each categoryData}}
+{{> category-details}}
+{{/each}}
+    
+ </table>
+
+<script src="/js/category.js"></script>
