@@ -171,6 +171,30 @@ router.get('/inventory-history', async (req, res) => {
 });
 
 /* 
+The `/api/employee/available` endpoint
+Route to see what items are available before submitting a borrow item request. 
+*/
+router.get('/available', async (req, res) => {
+  try {
+    // Get all available items, including their category.
+    const availableItems = await Item.findAll({
+      include: [Category],
+      where: {
+        is_available: true,
+      },
+      // Orderrs by the category_item so that different categories are grouped together.
+      order: ['category_id'],
+      raw: true,
+    });
+    // Return users available items in inventory.
+    res.json(availableItems);
+  } catch (err) {
+    // If try fails, return error.
+    res.sendStatus(400).json(err);
+  }
+});
+
+/* 
 The `/api/employee/borrow` endpoint
 Route to create a borrow item request. 
 */
@@ -184,7 +208,7 @@ router.post('/borrow', async (req, res) => {
 
     // Create variable to mark itema s not available
     const itemAvailable = {
-      available: false,
+      is_available: false,
     };
 
     // Update relevant item to not available
@@ -199,6 +223,47 @@ router.post('/borrow', async (req, res) => {
     await Transaction.create(transactionData);
 
     res.sendStatus(200);
+  } catch (err) {
+    res.status(400).json({
+      success: false,
+    });
+  }
+});
+
+
+/* 
+The `/api/employee/return` endpoint
+Route to return a borrowed item. 
+*/
+router.put('/return', async (req, res) => {
+  try {
+    // Create current date object to be inserted as return date
+    const returnDate = {
+      return_date: new Date()
+    };
+    // Create variable to mark item as available again
+    const itemAvailable = {
+      is_available: true,
+    };
+
+    // Update relevant item to be available
+    await Item.update(itemAvailable, {
+      where: {
+        id: req.body.item_id,
+      },
+    });
+
+    // Update transaction table to add return date to relevant row
+    await Transaction.update(returnDate, {
+      // Only updates row where borrow_date, employee, and item match to ensure correct transaction is updated.
+      where: {
+        borrow_date: req.body.borrow_date,
+        employee_id: req.session.user_id,
+        item_id: req.body.item_id,
+      }
+    })
+    res.sendStatus(200);
+    // If fails, return error
   } catch (err) {
     res.status(400).json({
       success: false,
