@@ -1,0 +1,43 @@
+<div class="row m-0 ps-5 py-3 fw-light"><p class="fs-3 m-0 p-0">Create Request</p></div>
+<div class="row m-0 ps-5 pt-5 fw-light"><p class="m-0 p-0">The items below are available:</p></div>
+<div class="card shadow-sm chart mx-5 mt-4">
+  <div class="row card-header m-0">
+    <div class="col-2 border-end"><p>Category</p></div>
+    <div class="col-2 border-end"><p>Item Name</p></div>
+    <div class="col-4 border-end"><p>Description</p></div>
+    <div class="col-2 border-end"><p>Status</p></div>
+    <div class="col-2 text-center"><p>Action</p></div>
+  </div>
+
+
+
+ {{#each items as |item|}}
+{{#if is_available}} 
+<div class="row m-0 card-body">
+        <div class="col-2"><p>{{category.name}}</p></div>
+        <div class="col-2"><p>{{item_name}}</p></div>
+        <div class="col-4 pe-2 text-truncate"><p>{{item_description}}</p></div>
+        
+        <div class="col-2 text-center">
+          <span
+              class="border border-0 py-2 px-3 rounded-pill text-success pill-available"
+            >available</span>
+        </div>
+
+        <div class="col-2 text-center">
+          <button
+            data-id="{{id}}"
+            type="submit"
+            class="btn btn-success btn-sm create-transaction-btn"
+          >Request</button>
+        </div>
+
+      </div>
+      {{/if}}
+ {{/each}}
+
+</div>
+
+<script src="/js/borrow.js"></script>
+
+{{log this}}

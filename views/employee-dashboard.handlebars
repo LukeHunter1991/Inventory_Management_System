@@ -5,12 +5,26 @@
     have:</p></div>
 <div class="card shadow-sm chart mx-5 mt-4">
   <div class="row card-header m-0">
-    <div class="col-1 border-end"><p>#</p></div>
-    <div class="col-3 border-end"><p>Item Name</p></div>
-    <div class="col-3 border-end"><p>Description</p></div>
-    <div class="col-2 border-end"><p>Borrow Date</p></div>
+    
+    <div class="col-2 border-end"><p>Item Name</p></div>
+    <div class="col-4 border-end"><p>Description</p></div>
+    <div class="col-3 border-end"><p>Borrow Date</p></div>
     <div class="col-2 text-center"><p>Action</p></div>
   </div>
 {{#each employeeTransactionData}}
-{{> employee-transaction-details}}
+{{!-- {{> employee-transaction-details}} --}}
+{{#if return_date}}
+<div></div>
+{{else}}
+<div class="row m-0 card-body">
+      
+      <div class="col-2 text-truncate"><p>{{item.item_name}}</p></div>
+      <div class="col-4 text-truncate"><p>{{item.item_description}}</p></div>
+      <div class="col-3 "><p>{{format_date borrow_date}}</p></div>
+      <div class="col-2 text-center"><button data-id="{{id}}" type="submit" class="btn btn-sm m-0 btn-danger end-transaction-btn">Return</button></div>
+
+</div>
+
+{{/if}}
 {{/each}}
+
