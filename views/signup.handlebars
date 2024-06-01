@@ -1,36 +1,62 @@
-<h2>Sign Up</h2>
+<div class="background">
+    <div class="sign-form log-form p-3 border shadow rounded-3">
+        <div >
+            <section>
+                <h4>Inventory<br />Management<br /><span>System</span></h4>
+            </section>
+        </div>
+        <div class="row justify-content-center">
 
-<form class="form sign-form">
-  <div class="form-group">
-    <label for="firstname-signup">First name:</label>
-    <input class="form-input" type="text" id="firstname-signup" />
-  </div>
-  <div class="form-group">
-    <label for="lastname-signup">Last name:</label>
-    <input class="form-input" type="text" id="lastname-signup" />
-  </div>
-<div class="form-group">
-    <label for="email-signup">email:</label>
-    <input class="form-input" type="text" id="email-signup" />
-  </div>
-  <div class="form-group">
-    <label for="password-signup">password:</label>
-    <input class="form-input" type="password" id="password-signup" />
-  </div>
-  <div class="form-group">
-    <label for="isadmin-signup">Assign admin role:</label>    
-     
-    <select name="isadmin" id="isadmin-signup">  
-    <option value="true">Yes</option>
-    <option value="false">No</option>
+ <form class="col-6">
  
-</select>
+  
+  <div class="mb-4">
+             <label for="firstname-signup" class="form-label m-1">First name</label>
+            <input type="text" class="border-1 form-control" id="firstname-signup">
+          </div>
+
+<div class="mb-4">
+             <label for="lastname-signup" class="form-label m-1">Last name</label>
+            <input type="text" class="border-1 form-control" id="lastname-signup">
+          </div>
+
+  <div class="mb-1 mt-2">
+           <label for="email-signup" class="form-label m-1">Email</label>
+           <input type="email" class="border-1 form-control" id="email-signup" aria-describedby="emailHelp">
+           </div>
+
+  
+  <div class="mb-4">
+             <label for="password-signup" class="form-label m-1">Password</label>
+            <input type="password" class="border-1 form-control" id="password-signup">
+          </div>
+
+  <div class="mb-4">
+    <label for="isadmin-signup" class="form-label m-1">Assign admin role:</label>    
+     
+    <select name="isadmin" id="isadmin-signup" class="border-1 form-control" disabled>  
+    <option value="false">No</option>
+    <option value="true">Yes</option> 
+    </select>
   </div>
 
-  <div class="form-group">
-    <button class="btn btn-primary" type="submit">Sign Up</button>
+  <div class="d-grid mb-4">
+    <button class="btn btn-primary shadow border-0" type="submit">Sign Up >>></button>
   </div>
-  <a href="/login" id="login">Login instead </a>
+  <a href="/login" id="login" style="
+    color:  black;
+">Login instead >>></a>
 </form>
-
+        </div>
+       
+       <footer class="text-center mt-5">
+            <h6>InventoryManagementSystem -<span>IMS</span></h6>
+            <p>Copyright&copy;
+                <script
+                    type="text/javascript"> var date = new Date(); var year = date.getFullYear(); document.write(year);</script>
+                ims-project-group. All rights reserved.
+            </p>
+        </footer>
+    </div>
+</div>
 <script src="/js/signup.js"></script>
