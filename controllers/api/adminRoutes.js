@@ -96,4 +96,60 @@ router.get('/allitems', async (req, res) => {
   }
 });
 
+/* 
+The `/api/admin/add-category` endpoint
+Route to add a new category to the table
+*/
+router.post('/add-category', async (req, res) => {
+    // create a new category
+    try {
+      // Use create method provided by Sequilize to INSERT new tag into category table.
+      const newCategory = await Category.create(req.body);
+      // Returns tag that was created.
+      res.json(newCategory);
+  
+    } catch (err) {
+      // If above fails, return generic error and confirm not succesful.
+      res.sendStatus(400).json({
+        success: false
+      });
+    }
+});
+
+/* 
+The `/api/admin/add-item` endpoint
+Route to add a new item to the table
+*/
+router.post('/add-item', async (req, res) => {
+  // create a new category
+  try {
+    // Gets id for category_id column
+    const categoryId = await Category.findOne({
+      where: {
+        name: req.body.name,
+      },
+      raw: true,
+    })
+
+    // Create object with all required data to create a new row in item table.
+    const itemData = {
+      item_name: req.body.item_name,
+      item_description: req.body.item_description,
+      is_available: req.body.is_available,
+      category_id: categoryId.id
+    }
+
+    // Use create method provided by Sequilize to INSERT new item into Item table.
+    const newItem = await Item.create(itemData);
+    // Returns tag that was created.
+    res.json(newItem);
+
+  } catch (err) {
+    // If above fails, return generic error and confirm not succesful.
+    res.sendStatus(400).json({
+      success: false
+    });
+  }
+});
+
 module.exports = router;

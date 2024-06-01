@@ -257,9 +257,7 @@ router.put('/return', async (req, res) => {
     await Transaction.update(returnDate, {
       // Only updates row where borrow_date, employee, and item match to ensure correct transaction is updated.
       where: {
-        borrow_date: req.body.borrow_date,
-        employee_id: req.session.user_id,
-        item_id: req.body.item_id,
+        id: req.body.transaction_id,
       }
     })
     res.sendStatus(200);
