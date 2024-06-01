@@ -66,7 +66,7 @@ aside .tab:hover {
 .btn-no-style {
     background: none;
     border: none;
-    padding: 0;
+    padding: 0,10px;
     cursor: pointer;
     text-decoration: none;
     font-size: 100%;
@@ -74,11 +74,6 @@ aside .tab:hover {
     margin-left: 16px;
     color: var(--light);
 }
-
-.pill-available {
-    background-color: var(--available);
-}
-
 
 .background {
     min-height: 100vh;
@@ -114,4 +109,31 @@ aside .tab:hover {
 
 .log-form footer p {
     font-size: 10.25px;
+}
+
+.chart .row {
+    border-bottom: 0.5px solid lightsteelblue;
+    height: 54px;
+}
+
+.chart .row:hover {
+    background-color: var(--quatrinary);
+}
+
+.chart p {
+    font-size: 15px;
+    color: slategray;
+}
+
+.chart .card-header p {
+    font-weight: bold;
+}
+
+.pill-available {
+
+    background-color: var(--available);
+}
+
+.pill-unavailable {
+    background-color: var(--unavailable);
 }

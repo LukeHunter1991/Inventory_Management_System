@@ -30,6 +30,7 @@ router.get('/', async (req, res) => {
       transactionData: transactionData,
       itemData: unborrowedItemData,
       logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
     });
   } catch (err) {
     res.status(500).json(err);

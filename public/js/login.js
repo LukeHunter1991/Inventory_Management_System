@@ -14,7 +14,7 @@ const loginFormHandler = async (event) => {
     if (response.ok) {
       const jsonData = await response.json();
 
-      alert(jsonData.message);
+
       /* Once the employee is authenticated, based on the role of employee: directed either to admin dashboard or employee dashboard */
       if (jsonData.employee.is_admin === true) {
         document.location.replace('/api/admin');
