@@ -10,6 +10,18 @@ const categoryData = [
   {
     name: 'Keyboard',
   },
+  {
+    name: 'Headset',
+  },
+  {
+    name: 'Docking Station'
+  },
+  {
+    name: 'USB Flash Drive'
+  },
+  {
+    name: 'External Hard Drive'
+  },
 ];
 
 const seedCategories = () =>
