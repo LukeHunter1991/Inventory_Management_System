@@ -1,22 +1,16 @@
 {{log this}}
-<h1>Employee Dashboard</h1>
 
-
-<table>
-    <h4>My Borrowed Items</h4>
-  <tr>
-    <th>Borrow ID</th>
-    <th>Item Name </th>
-    <th>Item ID </th>
-    <th>Item Description </th>
-    <th>Borrow Date</th>
-    <th>Return Date</th>  
-   
-  </tr>
-  
+<div class="row m-0 ps-5 py-3 fw-light"><p class="fs-3 m-0 p-0">My Dashboard</p></div>
+<div class="row m-0 ps-5 pt-5 fw-light"><p class="m-0 p-0">The items I curently
+    have:</p></div>
+<div class="card shadow-sm chart mx-5 mt-4">
+  <div class="row card-header m-0">
+    <div class="col-1 border-end"><p>#</p></div>
+    <div class="col-3 border-end"><p>Item Name</p></div>
+    <div class="col-3 border-end"><p>Description</p></div>
+    <div class="col-2 border-end"><p>Borrow Date</p></div>
+    <div class="col-2 text-center"><p>Action</p></div>
+  </div>
 {{#each employeeTransactionData}}
 {{> employee-transaction-details}}
 {{/each}}
-    
- 
-</table>
