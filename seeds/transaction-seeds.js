@@ -2,49 +2,26 @@ const { Transaction } = require('../models');
 
 const transactionData = [
   {
-<<<<<<< HEAD
     borrow_date: "2023-01-25T08:30:00.000Z",
     return_date: "2023-07-26T08:30:00.000Z",
-=======
-    borrow_date: 'January 10, 2024 11:00:00',
-    return_date: '2024-01-15 17:00:00',
->>>>>>> 4ace952204e46c8707f5c25d5dab1afae60a97ea
     employee_id: 1,
     item_id: 1,
   },
   {
-<<<<<<< HEAD
     borrow_date: "2022-04-25T08:30:00.000Z",
     employee_id: 1,
     item_id: 2,
   },
   {
     borrow_date: "2022-05-25T09:38:00.000Z",
-=======
-    borrow_date: '2024-01-12 08:30:00',
-    return_date: null,
->>>>>>> 4ace952204e46c8707f5c25d5dab1afae60a97ea
     employee_id: 2,
     item_id: 18,
   },
   {
-<<<<<<< HEAD
     borrow_date: "2022-07-05T07:28:00.000Z",
     return_date: "2023-05-25T09:38:00.000Z",
     employee_id: 3,
     item_id: 4,
-=======
-    borrow_date: '2024-01-05 09:30:00',
-    return_date: '2024-01-10 16:00:00',
-    employee_id: 4,
-    item_id: 6,
-  },
-  {
-    borrow_date: '2024-01-08 10:00:00',
-    return_date: null,
-    employee_id: 5,
-    item_id: 2,
->>>>>>> 4ace952204e46c8707f5c25d5dab1afae60a97ea
   },
   {
     borrow_date: "2024-01-02T09:38:00.000Z",
