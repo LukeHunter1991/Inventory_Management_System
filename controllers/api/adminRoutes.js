@@ -65,6 +65,7 @@ router.get('/viewsummary', async (req, res) => {
       empNames: empNames,
       txncount: txncount,
       logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -80,9 +81,7 @@ router.get('/allitems', async (req, res) => {
   console.log('ADMIN ITEMS REQUEST');
   try {
     const items = await Item.findAll({
-      where: {
-        is_available: true,
-      },
+      include: {model: Category},
     });
     const unborrowedItemData = items.map((item) => item.get({ plain: true }));
 
