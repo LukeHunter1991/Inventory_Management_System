@@ -236,7 +236,7 @@ router.post('/borrow', async (req, res) => {
 The `/api/employee/return` endpoint
 Route to return a borrowed item. 
 */
-router.put('/return', async (req, res) => {
+router.put('/return/:id', async (req, res) => {
   try {
     // Create current date object to be inserted as return date
     const returnDate = {
@@ -248,22 +248,23 @@ router.put('/return', async (req, res) => {
     };
 
     // Update relevant item to be available
-    await Item.update(itemAvailable, {
+    const response = await Item.update({ is_available: true }, {
       where: {
         id: req.body.item_id,
       },
     });
-
+    console.log('this is response :', response);
     // Update transaction table to add return date to relevant row
     await Transaction.update(returnDate, {
       // Only updates row where borrow_date, employee, and item match to ensure correct transaction is updated.
       where: {
-        id: req.body.transaction_id,
+        id: req.params.id,
       }
     })
     res.sendStatus(200);
     // If fails, return error
   } catch (err) {
+    console.log(err);
     res.status(400).json({
       success: false,
     });

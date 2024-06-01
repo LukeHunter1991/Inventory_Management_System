@@ -21,4 +21,7 @@ const createTransactionHandler = async (event) => {
   }
 };
 
-document.querySelector('.create-transaction-btn').addEventListener('click', createTransactionHandler);
+const borrowBtns = document.querySelectorAll('.create-transaction-btn');
+for (let i = 0; i < borrowBtns.length; i++) {
+  borrowBtns[i].addEventListener('click', createTransactionHandler);
+}
