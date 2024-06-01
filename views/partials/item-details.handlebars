@@ -1,7 +1,12 @@
 {{log this}}  
   <tr>
     <td>{{id}}</td>
+    <td>{{category.name}}</td>
     <td>{{item_name}}</td>
-    <td>{{item_description}}</td>  
-    <td>{{is_available}}</td>    
+    <td>{{item_description}}</td> 
+    {{#if is_available}} 
+    <td>Available</td>
+    {{else}}
+    <td>Unavailable</td>
+    {{/if}}
   </tr>  
