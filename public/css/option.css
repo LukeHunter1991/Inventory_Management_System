@@ -125,10 +125,18 @@ aside .tab:hover {
     color: slategray;
 }
 
+.chart span {
+    font-size: 12.5px;
+}
 .chart .card-header p {
     font-weight: bold;
 }
 
+.chart .card-header label {
+    font-weight: bold;
+    font-size: 15px;
+    color: slategray;
+}
 .pill-available {
 
     background-color: var(--available);
