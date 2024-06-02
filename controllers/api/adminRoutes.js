@@ -11,14 +11,12 @@ router.get('/', adminAuth, async (req, res) => {
   console.log('ADMIN DASHBORD REQUEST');
   try {
     const transactions = await Transaction.findAll({
-      include: [{ model: Employee }, { model: Item }],
+      include: [{ model: Employee }, { model: Item, include: {model: Category}}],
     });
-
     // Serialize transaction data so templates can read it
     const transactionData = transactions.map((transaction) =>
       transaction.get({ plain: true })
     );
-
     res.render('admin-dashboard', {
       transactionData: transactionData,
       logged_in: req.session.logged_in,
@@ -81,7 +79,8 @@ router.get('/allitems', adminAuth, async (req, res) => {
   console.log('ADMIN ITEMS REQUEST');
   try {
     const items = await Item.findAll({
-      include: { model: Category },
+      include: [{model: Category}, { model: Transaction, include: [Employee]}],
+      order: ['id']
     });
     const unborrowedItemData = items.map((item) => item.get({ plain: true }));
 
@@ -158,6 +157,7 @@ router.get('/category', adminAuth, async (req, res) => {
     const categoryData = categories.map((category) =>
       category.get({ plain: true })
     );
+
 
     res.render('category-dashboard', {
       categoryData: categoryData,

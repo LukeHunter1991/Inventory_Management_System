@@ -6,17 +6,16 @@
     <div class="col-2 border-end"><p>Category</p></div>
     <div class="col-2 border-end"><p>Item Name</p></div>
     <div class="col-2 border-end"><p>Borrow Date</p></div>
-    <div class="col-2 border-end "><p>Return Date</p></div>
+    <div class="col-2 border-end"><p>Return Date</p></div>
     <div class="col-2 "><p>Borrower</p></div>
   </div>
-  
   {{#each transactionData}}
   <div class="row m-0 card-body">
       <div class="col-1 text-truncate"><p>{{id}}</p></div>
-      <div class="col-2 text-truncate"><p>{{item.item_name}}</p></div>
+      <div class="col-2 text-truncate"><p>{{item.category.name}}</p></div>
       <div class="col-2 text-truncate"><p>{{item.item_name}}</p></div>
       <div class="col-2 text-truncate"><p>{{format_date borrow_date}}</p></div>
-      <div class="col-2 "><p>{{format_date borrow_date}}</p></div>
+      <div class="col-2 "><p>{{format_date return_date}}</p></div>
       <div class="col-2 "><p>{{employee.first_name}} {{employee.last_name}}</p></div>
 
   </div>
