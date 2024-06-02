@@ -8,10 +8,12 @@ Route to display the admin dashboard with all the inventory status
 */
 
 router.get('/', adminAuth, async (req, res) => {
-  console.log('ADMIN DASHBORD REQUEST');
   try {
     const transactions = await Transaction.findAll({
-      include: [{ model: Employee }, { model: Item, include: {model: Category}}],
+      include: [
+        { model: Employee },
+        { model: Item, include: { model: Category } },
+      ],
     });
     // Serialize transaction data so templates can read it
     const transactionData = transactions.map((transaction) =>
@@ -30,11 +32,10 @@ router.get('/', adminAuth, async (req, res) => {
 /* 
 The `/api/admin/viewsummary` endpoint
 Route to display the bar chart with Number of transactions per employee. 
-This summary will display employees details that have not created any borrow request
+This summary will not display employees details that have not created any borrow request
 */
 
 router.get('/viewsummary', adminAuth, async (req, res) => {
-  console.log('ADMIN VIEW SUMMARY CHART REQUEST');
   try {
     const transactionsummary = await Transaction.count({
       col: 'employee_id',
@@ -71,16 +72,60 @@ router.get('/viewsummary', adminAuth, async (req, res) => {
 });
 
 /* 
+The `/api/admin/viewitemcategorysummary` endpoint
+Route to display the PIE chart with Number of all items per category. 
+
+*/
+
+router.get('/viewitemcategorysummary', adminAuth, async (req, res) => {
+  try {
+    const itemsummary = await Item.count({
+      col: 'category_id',
+      group: ['category_id'],
+    });
+
+    const categoryids = itemsummary.map((item) => item.category_id);
+
+    // This fetch is to retrieve the category names of the category ids for the Pie chart
+    const categories = await Category.findAll({
+      where: {
+        id: categoryids,
+      },
+    });
+
+    const categoryData = categories.map((category) =>
+      category.get({ plain: true })
+    );
+
+    const categoryNames = categoryData.map((category) => category.name);
+
+    //This is the number of items per category
+    const itemcount = itemsummary.map((item) => item.count);
+
+    res.render('admin-itemcategory-summary', {
+      categoryNames: categoryNames,
+      itemcount: itemcount,
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+/* 
 The `/api/admin/allitems` endpoint
 Route to display all the unborrowed items  
 : All Items (Both Available) 
 */
 router.get('/allitems', adminAuth, async (req, res) => {
-  console.log('ADMIN ITEMS REQUEST');
   try {
     const items = await Item.findAll({
-      include: [{model: Category}, { model: Transaction, include: [Employee]}],
-      order: ['id']
+      include: [
+        { model: Category },
+        { model: Transaction, include: [Employee] },
+      ],
+      order: ['id'],
     });
     const unborrowedItemData = items.map((item) => item.get({ plain: true }));
 
@@ -157,7 +202,7 @@ router.get('/category', adminAuth, async (req, res) => {
     const categoryData = categories.map((category) =>
       category.get({ plain: true })
     );
-  
+
     res.render('category-dashboard', {
       categoryData: categoryData,
       logged_in: req.session.logged_in,
