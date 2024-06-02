@@ -1,16 +1,30 @@
- <a href="/api/admin/viewsummary">View Summary </a>
-<table>
-    <h4>Borrowed Items</h4>
-  <tr>
-    <th>ID</th>
-    <th>Borrow Date</th>
-    <th>Return Date</th>
-    <th>Borrowed By  </th>
-    <th>Item Borrowed </th>
-  </tr>
-  
-{{#each transactionData}}
-{{> transaction-details}}
-{{/each}}
+{{log this}}
+
+<div class="row m-0 ps-5 py-3 fw-light"><p class="fs-3 m-0 p-0">My Dashboard</p></div>
+<div class="row m-0 ps-5 pt-5 fw-light"><p class="m-0 p-0">The items I curently
+    have:</p></div>
+<div class="card shadow-sm chart mx-5 mt-4">
+  <div class="row card-header m-0">
     
-</table>
+    <div class="col-2 border-end"><p>Item Name</p></div>
+    <div class="col-4 border-end"><p>Description</p></div>
+    <div class="col-3 border-end"><p>Borrow Date</p></div>
+    <div class="col-2 text-center"><p>Action</p></div>
+  </div>
+{{#each employeeTransactionData}}
+{{!-- {{> employee-transaction-details}} --}}
+{{#if return_date}}
+<div></div>
+{{else}}
+<div class="row m-0 card-body">
+      
+      <div class="col-2 text-truncate"><p>{{item.item_name}}</p></div>
+      <div class="col-4 text-truncate"><p>{{item.item_description}}</p></div>
+      <div class="col-3 "><p>{{format_date borrow_date}}</p></div>
+      <div class="col-2 text-center"><button data-id="{{id}}" data-item="{{item.id}}" type="submit" class="btn btn-sm m-0 btn-danger end-transaction-btn">Return</button></div>
+
+</div>
+
+{{/if}}
+{{/each}}
+

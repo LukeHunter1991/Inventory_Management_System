@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const { Transaction, Item, Employee, Category } = require('../../models');
-
+const { adminAuth } = require('../../utils/helpers');
 /* 
 The `/api/admin/` endpoint
 Route to display the admin dashboard with all the inventory status 
 : Borrowed Items (All employees) 
 */
 
-router.get('/', async (req, res) => {
+router.get('/', adminAuth, async (req, res) => {
   console.log('ADMIN DASHBORD REQUEST');
   try {
     const transactions = await Transaction.findAll({
@@ -35,7 +35,7 @@ Route to display the bar chart with Number of transactions per employee.
 This summary will display employees details that have not created any borrow request
 */
 
-router.get('/viewsummary', async (req, res) => {
+router.get('/viewsummary', adminAuth, async (req, res) => {
   console.log('ADMIN VIEW SUMMARY CHART REQUEST');
   try {
     const transactionsummary = await Transaction.count({
@@ -77,11 +77,11 @@ The `/api/admin/allitems` endpoint
 Route to display all the unborrowed items  
 : All Items (Both Available) 
 */
-router.get('/allitems', async (req, res) => {
+router.get('/allitems', adminAuth, async (req, res) => {
   console.log('ADMIN ITEMS REQUEST');
   try {
     const items = await Item.findAll({
-      include: {model: Category},
+      include: { model: Category },
     });
     const unborrowedItemData = items.map((item) => item.get({ plain: true }));
 
@@ -99,7 +99,7 @@ router.get('/allitems', async (req, res) => {
 The `/api/admin/add-category` endpoint
 Route to add a new category to the table
 */
-router.post('/add-category', async (req, res) => {
+router.post('/add-category', adminAuth, async (req, res) => {
   // create a new category
   try {
     // Use create method provided by Sequilize to INSERT new tag into category table.
@@ -119,7 +119,7 @@ router.post('/add-category', async (req, res) => {
 The `/api/admin/add-item` endpoint
 Route to add a new item to the table
 */
-router.post('/add-item', async (req, res) => {
+router.post('/add-item', adminAuth, async (req, res) => {
   // create a new category
   try {
     const categoryId = parseInt(req.body.category_id);
@@ -150,7 +150,7 @@ router.post('/add-item', async (req, res) => {
 The `/admin/category` endpoint
 Route to display the Create category page.
 */
-router.get('/category', async (req, res) => {
+router.get('/category', adminAuth, async (req, res) => {
   try {
     const categories = await Category.findAll({});
 
@@ -173,7 +173,7 @@ router.get('/category', async (req, res) => {
 The `/admin/item` endpoint
 Route to display the Create item page.
 */
-router.get('/item', async (req, res) => {
+router.get('/item', adminAuth, async (req, res) => {
   try {
     const categories = await Category.findAll({});
 
