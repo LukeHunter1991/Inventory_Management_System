@@ -1,6 +1,6 @@
 <div class="row m-0 ps-5 py-3 fw-light"><p class="fs-3 m-0 p-0">Item Category Statistics</p></div>
-<div>
-  <canvas id="itemCategoryChart" width="300" height="200"></canvas>
+<div id="item-statistics" class="display-chart">
+  <canvas id="item-category-chart" ></canvas>
 </div>
 
 
@@ -9,10 +9,10 @@
 
 <script>
 
-const ctx2 = document.getElementById('itemCategoryChart').getContext("2d");
+const ctx2 = document.getElementById('item-category-chart').getContext("2d");
 var labelData2 = "{{categoryNames}}";
 const xValues2 = labelData2.split(',');
-alert(xValues2)
+
 var txncount2 = "{{itemcount}}";
 const txnValues2 = txncount2.split(',');
 const yValues2 = txnValues2.map(item => parseInt(item));
