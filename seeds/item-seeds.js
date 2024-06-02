@@ -5,7 +5,7 @@ const itemData = [
     item_name: 'Lenovo Legion',
     item_description:
       '16" 1TB/32GB RAM, Intel Core i9-13900HX, NVIDIA GeForce RTX 4090',
-    is_available: true,
+    is_available: false,
     category_id: 1,
   },
   {
@@ -96,19 +96,19 @@ const itemData = [
   {
     item_name: 'Sony WH-1000XM4',
     item_description: 'Wireless Noise-Cancelling Over-Ear Headphones',
-    is_available: true,
+    is_available: false,
     category_id: 4
   },
   {
     item_name: 'Toshiba Canvio Advance',
     item_description: '2TB Portable External Hard Drive',
-    is_available: true,
+    is_available: false,
     category_id: 7
   },
   {
     item_name: 'Kingston DataTraveler',
     item_description: '64GB USB 3.1 Flash Drive',
-    is_available: true,
+    is_available: false,
     category_id: 6
   }
 ];
