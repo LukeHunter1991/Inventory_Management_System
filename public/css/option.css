@@ -88,8 +88,10 @@ aside .tab:hover {
   width: 650px;
   background-color: white;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 50px;
   font-weight: bold;
+  position: relative;
+  right: 8vw;
 }
 
 .log-form span {
@@ -100,6 +102,16 @@ aside .tab:hover {
 .log-form button {
   background-color: #625fee;
   font-weight: 700;
+}
+
+.log-form a {
+  color: black;
+  font-size: 12px;
+  font-weight: 200;
+}
+
+.log-form a:hover {
+  font-weight: 300;
 }
 
 .log-form footer h6 {
@@ -117,7 +129,7 @@ aside .tab:hover {
 }
 
 .chart .row:hover {
-  background-color: var(--quatrinary);
+  background-color: var(--quatrinary)
 }
 
 .chart p {
@@ -128,6 +140,7 @@ aside .tab:hover {
 .chart span {
   font-size: 12.5px;
 }
+
 .chart .card-header p {
   font-weight: bold;
 }
@@ -137,6 +150,7 @@ aside .tab:hover {
   font-size: 15px;
   color: slategray;
 }
+
 .pill-available {
   background-color: var(--available);
 }
