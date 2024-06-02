@@ -93,6 +93,7 @@ router.get('/viewitemcategorysummary', adminAuth, async (req, res) => {
       },
     });
 
+
     const categoryData = categories.map((category) =>
       category.get({ plain: true })
     );
@@ -202,7 +203,20 @@ router.get('/category', adminAuth, async (req, res) => {
     const categoryData = categories.map((category) =>
       category.get({ plain: true })
     );
+    //**************************** */
+    const catCount = await Item.count({
+      col: 'category_id',
+      group: ['category_id'],
+    });
 
+    for (i = 0; i < categoryData.length; i++) {
+      categoryData[i].count = catCount[i].count
+    }
+
+    console.log(categoryData);
+
+    //console.log(categoryData);
+    //********************************* */
     res.render('category-dashboard', {
       categoryData: categoryData,
       logged_in: req.session.logged_in,
