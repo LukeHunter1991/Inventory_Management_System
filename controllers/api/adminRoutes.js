@@ -157,8 +157,7 @@ router.get('/category', adminAuth, async (req, res) => {
     const categoryData = categories.map((category) =>
       category.get({ plain: true })
     );
-
-
+  
     res.render('category-dashboard', {
       categoryData: categoryData,
       logged_in: req.session.logged_in,
