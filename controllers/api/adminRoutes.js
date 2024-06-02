@@ -203,20 +203,19 @@ router.get('/category', adminAuth, async (req, res) => {
     const categoryData = categories.map((category) =>
       category.get({ plain: true })
     );
-    //**************************** */
+    // Get an object array which counts the amount of items in each category
     const catCount = await Item.count({
       col: 'category_id',
       group: ['category_id'],
     });
 
+    // Add category count to the categoryData object array.
     for (i = 0; i < categoryData.length; i++) {
-      categoryData[i].count = catCount[i].count
+      catCount[i] ? categoryData[i].count = catCount[i].count : categoryData[i].count = '0'
+      console.log(categoryData);
     }
 
-    console.log(categoryData);
 
-    //console.log(categoryData);
-    //********************************* */
     res.render('category-dashboard', {
       categoryData: categoryData,
       logged_in: req.session.logged_in,
