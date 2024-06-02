@@ -13,8 +13,15 @@ if (process.env.DB_URL) {
     process.env.DB_USER,
     process.env.DB_PASSWORD,
     {
-      host: 'localhost',
+      host: process.env.DB_HOST || 'localhost',
       dialect: 'postgres',
+      //TODO : Uncomment while connecting to the render database with external database credentials in env.
+      // dialectOptions: {
+      //   ssl: {
+      //     require: true,
+      //     rejectUnauthorized: false,
+      //   },
+      // },
     }
   );
 }
