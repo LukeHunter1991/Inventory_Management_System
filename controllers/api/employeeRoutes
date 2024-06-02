@@ -15,14 +15,13 @@ Route to authenticate the employee and direct to dashboard based on the Role of 
 */
 router.post('/login', async (req, res) => {
   try {
-    console.log('*****************LOGIN ROUTE ***************************');
     const employeeData = await Employee.findOne({
       where: { email: req.body.email },
     });
 
     if (!employeeData) {
       res.status(400).json({
-        message: 'Incorrect email or password or role, please try again',
+        message: 'Incorrect email or password, please try again',
       });
       return;
     }
@@ -31,7 +30,7 @@ router.post('/login', async (req, res) => {
 
     if (!validPassword) {
       res.status(400).json({
-        message: 'Incorrect email or password or role, please try again',
+        message: 'Incorrect email or password, please try again',
       });
       return;
     }
@@ -90,7 +89,6 @@ The `/api/employee/` endpoint
 Route to display the employee dashboard with all the borrowed items of the logged in employee. 
 */
 router.get('/', async (req, res) => {
-  console.log('EMPLOYEE DASHBORD REQUEST');
   try {
     const employeeTransactions = await Transaction.findAll({
       where: {
@@ -106,7 +104,8 @@ router.get('/', async (req, res) => {
 
     res.render('employee-dashboard', {
       employeeTransactionData: employeeTransactionData,
-      logged_in: req.session.logged_in, is_admin: req.session.is_admin,
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -231,7 +230,6 @@ router.post('/borrow', async (req, res) => {
   }
 });
 
-
 /* 
 The `/api/employee/return` endpoint
 Route to return a borrowed item. 
@@ -240,7 +238,7 @@ router.put('/return/:id', async (req, res) => {
   try {
     // Create current date object to be inserted as return date
     const returnDate = {
-      return_date: new Date()
+      return_date: new Date(),
     };
     // Create variable to mark item as available again
     const itemAvailable = {
@@ -248,19 +246,22 @@ router.put('/return/:id', async (req, res) => {
     };
 
     // Update relevant item to be available
-    const response = await Item.update({ is_available: true }, {
-      where: {
-        id: req.body.item_id,
-      },
-    });
+    const response = await Item.update(
+      { is_available: true },
+      {
+        where: {
+          id: req.body.item_id,
+        },
+      }
+    );
     console.log('this is response :', response);
     // Update transaction table to add return date to relevant row
     await Transaction.update(returnDate, {
       // Only updates row where borrow_date, employee, and item match to ensure correct transaction is updated.
       where: {
         id: req.params.id,
-      }
-    })
+      },
+    });
     res.sendStatus(200);
     // If fails, return error
   } catch (err) {
@@ -270,8 +271,6 @@ router.put('/return/:id', async (req, res) => {
     });
   }
 });
-
-
 
 //adding a few routes for displaying handlebars
 router.get('/history', withAuth, async (req, res) => {
@@ -290,12 +289,13 @@ router.get('/history', withAuth, async (req, res) => {
 
     res.render('employee-history', {
       employeeTransactionData: employeeTransactionData,
-      logged_in: req.session.logged_in, is_admin: req.session.is_admin,
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
     });
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 
 router.get('/request', withAuth, async (req, res) => {
   try {
@@ -304,22 +304,28 @@ router.get('/request', withAuth, async (req, res) => {
         {
           model: Category,
           attributes: ['name'],
-        }
+        },
       ],
     });
     const items = itemData.map((item) => item.get({ plain: true }));
-    res.render('employee-request', { items, logged_in: req.session.logged_in, is_admin: req.session.is_admin, });
+    res.render('employee-request', {
+      items,
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 
 router.get('/info', withAuth, async (req, res) => {
   try {
-
-    res.render('employee-info', { logged_in: req.session.logged_in, is_admin: req.session.is_admin, });
+    res.render('employee-info', {
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 module.exports = router;
