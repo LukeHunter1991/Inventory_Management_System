@@ -1,28 +1,30 @@
 <div class="row m-0 ps-5 py-3 fw-light"><p class="fs-3 m-0 p-0">Create New Category</p></div>
 
 
-<form class="card shadow-sm chart mx-5 mt-4 category-form" style="width:70%">
+<form class="card shadow-sm chart mx-5 mt-4 category-form">
  <div class="row card-header m-0">
   <label for="category-name" class="col-sm-2 col-form-label">Add Category Name</label>
   <div class="col-sm-8">
    <input class="form-input form-control" type="text" id="category-name" />
   </div>
   <div class="col-sm-2">
-   <button class="btn btn-primary" type="submit">Add Category</button>
+   <button class="btn btn-primary border-0 add-btn" type="submit">Add Category</button>
   </div>
  </div> 
 </form>
 
-<div class="card shadow-sm chart mx-5 mt-4" style="width:30%">
+<div class="card shadow-sm chart mx-5 mt-4">
   <div class="row card-header m-0">
-    <div class="col-1 border-end" style="width:20%"><p>ID</p></div>
-    <div class="col-9 border-end" style="width:80%"><p>Category Name</p></div>
+    <div class="col-1 border-end"><p>ID</p></div>
+    <div class="col-9 border-end"><p>Category Name</p></div>
+    <div class="col-2 text-center"><p>Count</p></div>
   </div>
   
   {{#each categoryData}}
   <div class="row m-0 card-body">
-      <div class="col-1 text-truncate" style="width:20%"><p>{{id}}</p></div>
-      <div class="col-9 text-truncate" style="width:80%"><p>{{name}}</p></div>
+      <div class="col-1 text-truncate"><p>{{id}}</p></div>
+      <div class="col-9 text-truncate"><p>{{name}}</p></div>
+       <div class="col-2 text-center"><p>?</p></div>
   </div>
   {{/each}}
 

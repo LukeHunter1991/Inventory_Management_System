@@ -145,3 +145,7 @@ aside .tab:hover {
 .pill-unavailable {
     background-color: var(--unavailable);
 }
+
+.add-btn {
+    background-color: var(--secondary);
+}
