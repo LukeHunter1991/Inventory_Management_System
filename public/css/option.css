@@ -1,151 +1,167 @@
 :root {
-    --primary: #514290;
-    --secondary: #6E5BC2;
-    --tertiary: #7E6CCA;
-    --quatrinary: #F7F7F7;
-    --light: #FFFFFF;
-    --dark: #22283C;
-    --available: #D0EBD1;
-    --unavailable: #FACCCA;
-    --electron-purple: #5553db;
+  --primary: #514290;
+  --secondary: #6e5bc2;
+  --tertiary: #7e6cca;
+  --quatrinary: #f7f7f7;
+  --light: #ffffff;
+  --dark: #22283c;
+  --available: #d0ebd1;
+  --unavailable: #faccca;
+  --electron-purple: #5553db;
 }
 
 body {
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 
-    background-color: var(--quatrinary);
+  background-color: var(--quatrinary);
 }
 
 a {
-    color: var(--light);
-    text-decoration: none;
+  color: var(--light);
+  text-decoration: none;
 }
 
 nav {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--primary);
-    color: var(--light);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--primary);
+  color: var(--light);
 }
 
 nav a {
-    padding: 10px 20px;
-    text-align: center;
+  padding: 10px 20px;
+  text-align: center;
 }
 
 aside {
-    min-height: 100vh;
-    flex: 0;
-    background-color: var(--secondary);
-    text-align: left;
-    color: var(--light);
+  min-height: 100vh;
+  flex: 0;
+  background-color: var(--secondary);
+  text-align: left;
+  color: var(--light);
 }
 
 aside .tab {
-    margin: 0;
-    padding: 12.5px 60px 12.5px 40px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: baseline;
-    line-height: 75%;
+  margin: 0;
+  padding: 12.5px 60px 12.5px 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  line-height: 75%;
 }
 
 aside .tab a {
-    margin: 15px;
-    color: var(--light);
-    text-decoration: none;
+  margin: 15px;
+  color: var(--light);
+  text-decoration: none;
 }
 
 aside .tab:hover {
-    background-color: var(--tertiary);
+  background-color: var(--tertiary);
 }
 
 .btn-no-style {
-    background: none;
-    border: none;
-    padding: 0,10px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 100%;
-    transition: color 0.1s;
-    margin-left: 16px;
-    color: var(--light);
+  background: none;
+  border: none;
+  padding: 0, 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 100%;
+  transition: color 0.1s;
+  margin-left: 16px;
+  color: var(--light);
 }
 
 .background {
-    min-height: 100vh;
-    min-width: 100vw;
-    background-color: #EAEEFA;
-    position: fixed;
-    top: 0;
-    left: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: #eaeefa;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .log-form {
-    width: 650px;
-    background-color: white;
-    margin: auto;
-    margin-top: 100px;
-    font-weight: bold;
+  width: 650px;
+  background-color: white;
+  margin: auto;
+  margin-top: 100px;
+  font-weight: bold;
 }
 
 .log-form span {
-    color: var(--electron-purple);
-    font-weight: bolder;
+  color: var(--electron-purple);
+  font-weight: bolder;
 }
 
 .log-form button {
-    background-color: #625fee;
-    font-weight: 700;
+  background-color: #625fee;
+  font-weight: 700;
 }
 
 .log-form footer h6 {
-    font-size: 18px;
-    font-weight: 600;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .log-form footer p {
-    font-size: 10.25px;
+  font-size: 10.25px;
 }
 
 .chart .row {
-    border-bottom: 0.5px solid lightsteelblue;
-    height: 54px;
+  border-bottom: 0.5px solid lightsteelblue;
+  height: 54px;
 }
 
 .chart .row:hover {
-    background-color: var(--quatrinary);
+  background-color: var(--quatrinary);
 }
 
 .chart p {
-    font-size: 15px;
-    color: slategray;
+  font-size: 15px;
+  color: slategray;
 }
 
 .chart span {
-    font-size: 12.5px;
+  font-size: 12.5px;
 }
 .chart .card-header p {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .chart .card-header label {
-    font-weight: bold;
-    font-size: 15px;
-    color: slategray;
+  font-weight: bold;
+  font-size: 15px;
+  color: slategray;
 }
 .pill-available {
-
-    background-color: var(--available);
+  background-color: var(--available);
 }
 
 .pill-unavailable {
-    background-color: var(--unavailable);
+  background-color: var(--unavailable);
 }
 
 .add-btn {
-    background-color: var(--secondary);
+  background-color: var(--secondary);
+}
+
+.display-chart {
+  position: relative;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 50px;
+}
+
+#item-statistics {
+  height: 80vh;
+  width: 100vw;
+}
+
+#emp-statistics {
+  height: 60vh;
+  width: 80vw;
 }

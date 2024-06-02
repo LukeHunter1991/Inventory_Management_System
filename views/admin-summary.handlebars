@@ -1,6 +1,6 @@
 <div class="row m-0 ps-5 py-3 fw-light"><p class="fs-3 m-0 p-0">Employee Usage Statistics</p></div>
-<div>
-  <canvas id="myChart" width="300" height="200"></canvas>
+<div id="emp-statistics" class="display-chart">
+  <canvas id="emp-txn-chart" ></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors"></script>
@@ -8,7 +8,7 @@
 
 <script>
 
-const ctx = document.getElementById('myChart').getContext("2d");
+const ctx = document.getElementById('emp-txn-chart').getContext("2d");
 var labelData = "{{empNames}}";
 const xValues = labelData.split(',');
 var txncount = "{{txncount}}";
@@ -30,8 +30,8 @@ Chart.register(autocolors);
             label: 'Number of Transactions',
             data: yValues,
            borderWidth: 1,
-           //borderColor: '#36A2EB', // Border color
-           // backgroundColor: '#9BD0F5', // Background color
+           borderColor: '#8d7cbb', // Border color
+           backgroundColor: '#8d7cbb', // Background color
           },
         ],
       },
@@ -39,7 +39,7 @@ Chart.register(autocolors);
         scales: {
           y: {
             beginAtZero: true,
-            //max: 50,
+            max: 30,
             //min: 0,
             ticks: {
                 stepSize: 1
