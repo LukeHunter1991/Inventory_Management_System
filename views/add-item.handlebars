@@ -4,7 +4,8 @@
  <div class="card-header m-0">
   <form class="row g-3 create-item-form">
    <div class="col-md-3">
-    <label for="category-id" class="form-label">Select category:</label>
+    <label for="category-id" class="form-label" style=" font-size: 15px;
+  color: slategray;font-weight: bold;">Select category:</label>
     <select id="category-id" name="category"  class="form-select">
       {{#each categoryData}}
       <option value="{{id}}">{{name}}</option>
@@ -13,16 +14,18 @@
    </div>
  
    <div class="col-md-6">
-    <label for="item-name" class="form-label">Item name:</label>
+    <label for="item-name" class="form-label" style=" font-size: 15px;
+  color: slategray;font-weight: bold;">Item name:</label>
     <input type="text" class="form-control" id="item-name">  
    </div>
  
    <div class="col-md-3 d-flex align-items-end ">
-     <button class="btn btn-primary border-0 add-btn" type="submit">Add Item</button>
+     <button class="btn btn-primary border-0 add-btn" type="submit" >Add Item</button>
    </div>
 
    <div class="col-12 py-2">
-    <label for="item-description" class="form-label">Item description:</label>
+    <label for="item-description" class="form-label" style=" font-size: 15px;
+  color: slategray;font-weight: bold;">Item description:</label>
     <textarea class="form-control " id="item-description" rows="3"></textarea>
    </div>
    <div class="form-group " style="display: none;">
