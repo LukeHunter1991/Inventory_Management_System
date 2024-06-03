@@ -2,32 +2,32 @@
 <div class="row m-0 ps-5 pt-5 fw-light"><p class="m-0 p-0"></p></div>
 <div class="card shadow-sm chart mx-5 mt-4">
   <div class="row card-header m-0">
-    <div class="col-1 border-end" style="width:5%"><p>ID</p></div>
-    <div class="col-2 border-end" style="width:12%"><p>Category</p></div>
-    <div class="col-2 border-end" style="width:15%"><p>Item Name</p></div>
-    <div class="col-2 border-end" style="width:38%"><p>Description</p></div>
-    <div class="col-2 border-end"style="width:10%"><p>Status</p></div>
-    <div class="col-2 border-end" style="width:20%"><p>Current Borrower</p></div>
+    <div class="col-1 border-end" ><p>ID</p></div>
+    <div class="col-2 border-end" ><p>Category</p></div>
+    <div class="col-2 border-end" ><p>Item Name</p></div>
+    <div class="col-3 border-end"><p>Description</p></div>
+    <div class="col-2 border-end text-center"><p>Status</p></div>
+    <div class="col-2" ><p>Current Borrower</p></div>
   </div>
   {{#each itemData}}
 <div class="row m-0 card-body">
-      <div class="col-1 text-truncate" style="width:5%"><p>{{id}}</p></div>
-      <div class="col-2 text-truncate" style="width:12%"><p>{{category.name}}</p></div>
-      <div class="col-2 text-truncate" style="width:15%"><p>{{item_name}}</p></div>
-      <div class="col-2 text-truncate" style="width:38%"><p>{{item_description}}</p></div>
+      <div class="col-1 text-truncate" ><p>{{id}}</p></div>
+      <div class="col-2 text-truncate" ><p>{{category.name}}</p></div>
+      <div class="col-2 text-truncate"><p>{{item_name}}</p></div>
+      <div class="col-3 text-truncate"><p>{{item_description}}</p></div>
       {{#if is_available}} 
-      <div class="col-2 text-center" style="width:10%">
+      <div class="col-2 text-center">
           <span
               class="border border-0 py-2 px-3 rounded-pill text-success pill-available"
             >available</span>
         </div>
       {{else}}
-      <div class="col-2 text-center" style="width:10%">
+      <div class="col-2 text-center" >
           <span
               class="border border-0 py-2 px-2 rounded-pill text-danger pill-unavailable"
             >unavailable</span>
         </div>
-        <div class="col-2 text-truncate" style="width:20%"><p>{{transactions.[0].employee.first_name}} {{transactions.[0].employee.last_name}}</p></div>
+        <div class="col-2 text-truncate"><p>{{transactions.[0].employee.first_name}} {{transactions.[0].employee.last_name}}</p></div>
       {{/if}}
 </div>
 {{/each}}
