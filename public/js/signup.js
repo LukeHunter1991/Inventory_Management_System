@@ -8,7 +8,7 @@ const signupFormHandler = async (event) => {
   const isAdmin = document.querySelector('#isadmin-signup').value.trim();
 
   if (firstname && lastname && email && password && isAdmin) {
-    const response = await fetch('/api/employee/signup', {
+    const response = await fetch('/api/employee/signup/', {
       method: 'POST',
       body: JSON.stringify({ firstname, lastname, email, password, isAdmin }),
       headers: { 'Content-Type': 'application/json' },
@@ -21,7 +21,25 @@ const signupFormHandler = async (event) => {
         document.location.replace('/api/employee');
       }
     } else {
-      alert('Failed to signup');
+      const jsonData = await response.json();
+      const error = jsonData.errors;
+      const errorDetailStrObj = jsonData.parent;
+
+      const errorStrObj = JSON.stringify(error[0]);
+
+      const errorDetail = errorDetailStrObj.code;
+
+      const parsedErrObj = JSON.parse(errorStrObj);
+      if (errorDetail.trim() === '23505') {
+        alert(
+          'Failed to signup' +
+            ': Email ID ' +
+            parsedErrObj.value +
+            ' already exists.'
+        );
+      } else {
+        alert('Failed to signup');
+      }
     }
   }
 };
