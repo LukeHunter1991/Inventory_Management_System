@@ -1,95 +1,104 @@
-# Inventory Management System
+# Inventory Management System 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-aqua.svg?style=for-the-badge)](https://opensource.org/licenses/MIT) 
+
+![node version](https://img.shields.io/badge/v22-node-blue?logo=nodedotjs) ![npm version](https://img.shields.io/badge/version-v10.5.1-npm.svg?style=flat&logo=npm&label=npm&labelColor=yellow&color=red) ![postgresql version](https://img.shields.io/npm/v/pg?style=flat&logo=postgresql&logoColor=aqua&logoSize=auto&label=postgresql-npm) 
+
+<p align="left">
+    <img src="https://img.shields.io/github/languages/top/LukeHunter1991/Inventory_Management_System?style=flat&color=blue" />
+    <img src="https://img.shields.io/github/repo-size/LukeHunter1991/Inventory_Management_System?style=flat&color=blue" />
+    <img src="https://img.shields.io/github/issues/LukeHunter1991/Inventory_Management_System?style=flat&color=blue" />
+    <img src="https://img.shields.io/github/last-commit/LukeHunter1991/Inventory_Management_System?style=flat&color=blue" >
+</p>
 
 ## Description
 
-- Details
-- This project follows the MVC paradign in its architectural structure,using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
-- Details 
-
-
+Inventory Management System is full-stack Model-View-Controller configurated application which uses Handlebars.js as templating language, Sequelize as the Object-relational mapping processing technique for data handling and database operations, and the express-session npm package for authentication.
 
 ## Table of Contents 
 
 - [Installation](#installation)
 - [User Story](#user-story)
-- [Usage](#usage)
-- [Usage & Tests](#usageandtest-screenshots)
+- [Usage Info](#usage-info)
+- [Tests Instructions](#test-instructions)
 - [Acceptance Criteria](#acceptance-criteria)
-- [DBSchema](#dbschema)
-- [Credits](#credits)
+- [DB Schema](#dbschema)
 - [License](#license)
 
 ## Installation
+Because we need PostgreSQL database it should be installed at local machine drive and then loaded into npm node module packages. Installation process for postgresql we can find here [PostgreSQL Databse Installation](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads). During the installation process default port should be `5432`. After database is installed localy npm pg packages should be loaded into node modules over cli terminal.
 
-Follow these instructions to create your project and deploy it to GitHub Pages:
-
-1. Create a new repository on your GitHub account and clone it to your computer.
-
-2. When you're ready to deploy, use the git add, git commit, and git push commands to save and push your code to your GitHub repository.
-
-3. Navigate to your GitHub repository in the browser and then select the Settings tab on the right side of the page.
-
-4. On the Settings page, select Pages on the left side of the page. On the GitHub Pages screen, choose main in the dropdown under Branch. Click the Save button.
-
-5. Navigate to <your-github-username.github.io/your-repository-name> and you will find that your new webpage has gone live! For example, if your GitHub username is "lernantino" and the project is "css-demo-site", then your URL would be <lernantino.github.io/css-demo-site>.
-
-6. To ensure that the node_modules folder is not pushed in the GITHUB, the .gitignore has to be updated and included.
-
-7. All the environment variables are added in the .env to ensure that the User credentials are confidential. A sample .env.EXAMPLE has been provided in the repository and the .env is added in the .gitignore.
-
-8. Navigate to your Render.com - create New Web Service - Select Build and Deploy from a Git Repository
-
-4. Connect to the respository created in above Steps 1 -2. 
-
-5. Provide Name of the webservice : (technical-blog), Select Region : (Singapore), Branch : (main), Build Command : (npm i) , Start Command : (npm start), Auto-deploy : (Yes) , Update the DB URL (The one added on the Render.)
-
-6. Once the settings are saved, the application is deployed and the published url will be <TODO>
-
-## User-Story 
+```bash
+$ npm install pg
 ```
-AS A developer
+After packages are loaded database credentials should be populated into `.env` file like username, password, and database name. Check .env file for details. Also, there is a file `./db/schema.sql` and `./seeds/seeds.sql` that can be used to set database structure and to populate database with testing seeds, just uncoment it and run. Check file `schema.sql` and `seeds.sql`. It can be runned as follows:
+
+```console
+$ psql -U postgres 
+Password for user postgres:
+psql (16.2)
+postgres=# \i ./db/schema.sql
+DROP DATABASE
+CREATE DATABASE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+postgres=# \i ./seeds/seeds.sql
+INSERT 0 3
+INSERT 0 5
+INSERT 0 8
+INSERT 0 5
+postgres=#
 ```
- 
-## Usage
-
-**Link for the repository :** 
-
-
-**Deployed application on Render URL:**
-
-
-
-## UsageAndTest Screenshots :
-
-#### 1. ****Inventory Management System : Login:****
-
-![Image Unavailable](./assets/images/) 
-
-
-
-
-## Acceptance-Criteria
-
-```
-GIVEN a CMS-style Inventory Management System site
-WHEN I visit the site for the first time
-THEN 
+Otherwise you can run seeds over bash terminal as follows
+```bash
+$ nmm run seed
 ```
 
-## DBSchema
+## User story 
+```
+AS A business owner
+I WANT that my employees are able to borrow and manage inventory items in my company
+SO THAT I can organize and plan activities and run the business.
+```
 
-![Image Unavailable](./assets/images/02_techblog_ERD.jpg) 
+## Acceptance criteria 
+```
+GIVEN responsive user intrface that accepts user inputs and perform operations on database
+WHEN I start application
+THEN I am presented with login interface and option to signup
+WHEN I choose to signup I am redirected to signup page
+THEN I have to insert my details, first name, last name, email and password
+WHEN I choose to login I have to insert my credentials like email and password
+THEN I am redirected to the employee dashboard
+WHEN I choose to login as administrator and insert my credentials like email and password
+THEN I am redirected to the admin dashboard
+WHEN I am loged at employee dashboard 
+THEN I am presented with currentlly borrowed item(s) and options to return the item, to make new borrow request ant to display borrow history
+WHEN I choose to return the item
+THEN that item is removed from currently borrowed list
+WHEN I chose to make new borrow request
+THEN I am presented with a list of available items that I can add to my borrow list
+WHEN I choose to see borrow history
+THEN I am presented with a list of all items that I have borrowed and returned in the past
+```
 
-## Credits
+<a id="usage-info"></a>
+## Usage Info
 
-NA
+IMS application can be helpfull to those who want to store and manage data about inventory items that can be borrowed by employees in an organisation.
 
-## Helpful Resources
+<a id="contributing-guidelines"></a>
+## Contributing Guidelines
 
-* https://coding-boot-camp.github.io/full-stack/render/deploy-with-render-and-postgresql
+Currentlly, at this stage there is no contributors but for more information any enquiry can be reffered to Question and Contact section.
 
+<a id="test-instructions"></a>
+## Test Instructions
+
+Application runs by invoking command `$ npm start` at `~/Inventory_Management_System>` directory. Before running application, download compressed repo from githaub and installl packages globaly or at application root directory from the section [Installation](#installation). 
 
 ## License
 
-MIT
-
+Copyright © 2024, [IMS Project Group](https://github.com/LukeHunter1991/Inventory_Management_System). Released under the [MIT License](./LICENSE).
