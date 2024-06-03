@@ -3,21 +3,15 @@ const filterFormHandler = async (event) => {
 
   const choice = document.querySelector('#filter').value.trim();
 
-  alert(choice);
-
+  console.log(choice);
   if (choice) {
-    const response = await fetch('/api/admin/allitems/filter/', {
-      method: 'GET',
-      body: JSON.stringify({ choice }),
-      headers: { 'Content-Type': 'application/json' },
-    });
 
-    // if (response.ok) {
-    //   document.location.replace('/api/admin/allitems');
-    // } else {
-    // }
+    document.location.replace(`/api/admin/allitems/${choice}`);
+  } else {
+    alert('Failed to filter');
   }
 };
+
 
 document
   .querySelector('.filter-form')

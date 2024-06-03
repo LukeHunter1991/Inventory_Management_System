@@ -297,81 +297,15 @@ router.get('/item/:id', adminAuth, async (req, res) => {
   }
 });
 
-router.get('/allitems/category', adminAuth, async (req, res) => {
+
+router.get('/allitems/:choice', adminAuth, async (req, res) => {
   try {
     const items = await Item.findAll({
       include: [
         { model: Category },
         { model: Transaction, include: [Employee] },
       ],
-      order: ['category_id'],
-    });
-    const unborrowedItemData = items.map((item) => item.get({ plain: true }));
-
-    res.render('admin-items', {
-      itemData: unborrowedItemData,
-      logged_in: req.session.logged_in,
-      is_admin: req.session.is_admin,
-      employee_name: req.session.employee_name,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get('/allitems/name', adminAuth, async (req, res) => {
-  try {
-    const items = await Item.findAll({
-      include: [
-        { model: Category },
-        { model: Transaction, include: [Employee] },
-      ],
-      order: ['item_name'],
-    });
-    const unborrowedItemData = items.map((item) => item.get({ plain: true }));
-
-    res.render('admin-items', {
-      itemData: unborrowedItemData,
-      logged_in: req.session.logged_in,
-      is_admin: req.session.is_admin,
-      employee_name: req.session.employee_name,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get('/allitems/status', adminAuth, async (req, res) => {
-  try {
-    const items = await Item.findAll({
-      include: [
-        { model: Category },
-        { model: Transaction, include: [Employee] },
-      ],
-      order: ['is_available'],
-    });
-    const unborrowedItemData = items.map((item) => item.get({ plain: true }));
-
-    res.render('admin-items', {
-      itemData: unborrowedItemData,
-      logged_in: req.session.logged_in,
-      is_admin: req.session.is_admin,
-      employee_name: req.session.employee_name,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-////have to work this one out--
-router.get('/allitems/filter', adminAuth, async (req, res) => {
-  try {
-    const items = await Item.findAll({
-      include: [
-        { model: Category },
-        { model: Transaction, include: [Employee] },
-      ],
-      order: [req.body.choice],
+      order: [req.params.choice],
     });
     const unborrowedItemData = items.map((item) => item.get({ plain: true }));
 
