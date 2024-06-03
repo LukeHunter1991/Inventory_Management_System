@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Transaction, Item, Employee , Category } = require('../../models');
+const { Transaction, Item, Employee, Category } = require('../../models');
 const { adminAuth } = require('../../utils/helpers');
 /* 
 The `/api/admin/` endpoint
@@ -11,12 +11,14 @@ router.get('/', adminAuth, async (req, res) => {
   try {
     const transactions = await Transaction.findAll({
       include: [
-        { model: Employee, attributes: {
-          exclude: ['password'],
-        }, },
+        {
+          model: Employee, attributes: {
+            exclude: ['password'],
+          },
+        },
         { model: Item, include: { model: Category } },
       ],
-      order: ['id'],   
+      order: ['id'],
     });
     // Serialize transaction data so templates can read it
     const transactionData = transactions.map((transaction) =>
@@ -133,11 +135,15 @@ router.get('/allitems', adminAuth, async (req, res) => {
     const items = await Item.findAll({
       include: [
         { model: Category },
-        { model: Transaction, include: {model: Employee, attributes: {
-          exclude: ['password'],
-        },} },
+        {
+          model: Transaction, include: {
+            model: Employee, attributes: {
+              exclude: ['password'],
+            },
+          }
+        },
       ],
-      order: ['id'],       
+      order: ['id'],
     });
     const unborrowedItemData = items.map((item) => item.get({ plain: true }));
 
@@ -267,9 +273,11 @@ router.get('/item/:id', adminAuth, async (req, res) => {
   try {
     const transactions = await Transaction.findAll({
       include: [
-        { model: Employee, attributes: {
-          exclude: ['password'],
-        }, },
+        {
+          model: Employee, attributes: {
+            exclude: ['password'],
+          },
+        },
         { model: Item, include: { model: Category } },
       ],
       where: { item_id: req.params.id },
@@ -288,5 +296,95 @@ router.get('/item/:id', adminAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/allitems/category', adminAuth, async (req, res) => {
+  try {
+    const items = await Item.findAll({
+      include: [
+        { model: Category },
+        { model: Transaction, include: [Employee] },
+      ],
+      order: ['category_id'],
+    });
+    const unborrowedItemData = items.map((item) => item.get({ plain: true }));
+
+    res.render('admin-items', {
+      itemData: unborrowedItemData,
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/allitems/name', adminAuth, async (req, res) => {
+  try {
+    const items = await Item.findAll({
+      include: [
+        { model: Category },
+        { model: Transaction, include: [Employee] },
+      ],
+      order: ['item_name'],
+    });
+    const unborrowedItemData = items.map((item) => item.get({ plain: true }));
+
+    res.render('admin-items', {
+      itemData: unborrowedItemData,
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/allitems/status', adminAuth, async (req, res) => {
+  try {
+    const items = await Item.findAll({
+      include: [
+        { model: Category },
+        { model: Transaction, include: [Employee] },
+      ],
+      order: ['is_available'],
+    });
+    const unborrowedItemData = items.map((item) => item.get({ plain: true }));
+
+    res.render('admin-items', {
+      itemData: unborrowedItemData,
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+////have to work this one out--
+router.get('/allitems/filter', adminAuth, async (req, res) => {
+  try {
+    const items = await Item.findAll({
+      include: [
+        { model: Category },
+        { model: Transaction, include: [Employee] },
+      ],
+      order: [req.body.choice],
+    });
+    const unborrowedItemData = items.map((item) => item.get({ plain: true }));
+
+    res.render('admin-items', {
+      itemData: unborrowedItemData,
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;

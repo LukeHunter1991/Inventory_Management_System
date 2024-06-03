@@ -1,15 +1,36 @@
 <div class="row m-0 ps-5 py-3 fw-light"><p class="fs-3 m-0 p-0">All Inventory Items</p></div>
-<div class="row m-0 ps-5 pt-5 fw-light"><p class="m-0 p-0"></p></div>
+{{!-- <div class="row m-0 ps-5 pt-5 fw-light"><p class="m-0 p-0"></p></div> --}}
+
+<form class="card shadow-sm chart mx-5 mt-4 filter-form">
+ <div class="row card-header m-0">
+  
+  <label for="filter" class="col-sm-2 col-form-label">Filter by:</label>
+  
+  <div class="col-sm-6">
+    <select id="filter" name="filter"  class="form-select">
+       <option>Category</option>
+       <option>Item Name</option>
+       <option>Status</option>
+    </select>
+  </div>
+  
+  <div class="col-sm-2">
+   <button class="btn btn-primary border-0 add-btn" type="submit">Filter Result</button>
+  </div>
+ 
+ </div> 
+</form>
+
+
 <div class="card shadow-sm chart mx-5 mt-4">
   <div class="row card-header m-0">
     <div class="col-1 border-end" ><p>ID</p></div>
-    <div class="col-2 border-end" ><p>Category</p></div>
-    <div class="col-2 border-end" ><p>Item Name</p></div>
+    <div class="col-2 border-end" ><a href="/api/admin/allitems/category">Category</a></div>
+    <div class="col-2 border-end" ><a href="/api/admin/allitems/name">Item Name</a></div>
     <div class="col-3 border-end"><p>Description</p></div>
-    <div class="col-2 border-end text-center"><p>Status</p></div>
+    <div class="col-2 border-end text-center"><a href="/api/admin/allitems/status">Status</a></div>
     <div class="col-2" ><p>Current Borrower</p></div>
   </div>
-
   {{#each itemData}}
 <div class="row m-0 card-body" onclick="window.location='/api/admin/item/{{id}}'">
       <div class="col-1 text-truncate" ><p>{{id}}</p></div>
@@ -39,3 +60,5 @@
 {{/each}}
 
 </div>
+
+<script src="/js/filter.js"></script>
