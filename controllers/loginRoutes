@@ -4,7 +4,7 @@ const router = require('express').Router();
 The `/login/` endpoint
 Route to display the login page. If the employee is already logged in then redirects to the dashboard based on the role. 
 */
-router.get('/login', (req, res) => {
+router.get('/', (req, res) => {
   // If a session exists, redirect the request to the homepage
   if (req.session.logged_in && req.session.is_admin) {
     res.redirect('/api/admin');
