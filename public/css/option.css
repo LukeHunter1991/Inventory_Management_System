@@ -159,12 +159,6 @@ aside .tab:hover {
   font-weight: bold;
 }
 
-.chart .card-header a {
-  font-weight: bold;
-  font-size: 15px;
-  color: slategray;
-}
-
 .chart .card-header label {
   font-weight: bold;
   font-size: 15px;
