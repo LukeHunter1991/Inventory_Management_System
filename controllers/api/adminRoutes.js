@@ -255,4 +255,28 @@ router.get('/item', adminAuth, async (req, res) => {
   }
 });
 
+router.get('/item/:id', adminAuth, async (req, res) => {
+  try {
+    const transactions = await Transaction.findAll({
+      include: [
+        { model: Employee },
+        { model: Item, include: { model: Category } },
+      ],
+      where: { item_id: req.params.id },
+    });
+    // Serialize transaction data so templates can read it
+    const transactionData = transactions.map((transaction) =>
+      transaction.get({ plain: true })
+    );
+    res.render('admin-oneitem', {
+      transactionData: transactionData,
+      logged_in: req.session.logged_in,
+      is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
