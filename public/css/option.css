@@ -31,8 +31,34 @@ nav {
 }
 
 nav a {
-  padding: 10px 20px;
+  padding: 10px 5px;
   text-align: center;
+}
+
+.btn-no-style {
+  background: none;
+  border: none;
+  padding: 0, 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 100%;
+  transition: color 0.1s;
+  margin-left: 15px;
+  color: var(--light);
+}
+
+.btn-no-style:hover {
+  color: var(--light);
+}
+
+nav span {
+  width: 45px;
+  padding-top: 10px;
+  margin-left: 20px;
+  text-align: center;
+  background-color: #DFE1FB;
+  color: #555BCE;
+  font-weight: bold;
 }
 
 aside {
@@ -61,18 +87,6 @@ aside .tab a {
 
 aside .tab:hover {
   background-color: var(--tertiary);
-}
-
-.btn-no-style {
-  background: none;
-  border: none;
-  padding: 0, 10px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 100%;
-  transition: color 0.1s;
-  margin-left: 16px;
-  color: var(--light);
 }
 
 .background {

@@ -23,6 +23,7 @@ router.get('/', adminAuth, async (req, res) => {
       transactionData: transactionData,
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -65,6 +66,7 @@ router.get('/viewsummary', adminAuth, async (req, res) => {
       txncount: txncount,
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -108,6 +110,7 @@ router.get('/viewitemcategorysummary', adminAuth, async (req, res) => {
       itemcount: itemcount,
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -134,6 +137,7 @@ router.get('/allitems', adminAuth, async (req, res) => {
       itemData: unborrowedItemData,
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -220,6 +224,7 @@ router.get('/category', adminAuth, async (req, res) => {
       categoryData: categoryData,
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -243,6 +248,7 @@ router.get('/item', adminAuth, async (req, res) => {
       categoryData: categoryData,
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
     });
   } catch (err) {
     res.status(500).json(err);

@@ -34,7 +34,7 @@ router.post('/login', async (req, res) => {
       });
       return;
     }
-
+    req.session.employee_name = (employeeData.first_name).charAt(0) + (employeeData.last_name).charAt(0);
     req.session.user_id = employeeData.id;
     req.session.is_admin = employeeData.is_admin;
     req.session.logged_in = true;
@@ -106,6 +106,7 @@ router.get('/', async (req, res) => {
       employeeTransactionData: employeeTransactionData,
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -291,6 +292,7 @@ router.get('/history', withAuth, async (req, res) => {
       employeeTransactionData: employeeTransactionData,
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -312,6 +314,7 @@ router.get('/request', withAuth, async (req, res) => {
       items,
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -323,6 +326,7 @@ router.get('/info', withAuth, async (req, res) => {
     res.render('employee-info', {
       logged_in: req.session.logged_in,
       is_admin: req.session.is_admin,
+      employee_name: req.session.employee_name,
     });
   } catch (err) {
     res.status(500).json(err);
