@@ -16,6 +16,7 @@ router.get('/', adminAuth, async (req, res) => {
         }, },
         { model: Item, include: { model: Category } },
       ],
+      order: ['id'],   
     });
     // Serialize transaction data so templates can read it
     const transactionData = transactions.map((transaction) =>

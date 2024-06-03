@@ -12,14 +12,19 @@ Item.init(
       autoIncrement: true,
     },
     item_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(30),
       allowNull: false,
+      validate: {
+        isAlphanumeric: true,
+        max: 30,
+      },
     },
     item_description: {
       type: DataTypes.TEXT,
     },
     is_available: {
       type: DataTypes.BOOLEAN,
+      defaultValue: true,
     },
     category_id: {
       //Foreign Key referencing the category table id
