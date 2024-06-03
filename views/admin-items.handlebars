@@ -10,7 +10,7 @@
     <div class="col-2" ><p>Current Borrower</p></div>
   </div>
   {{#each itemData}}
-<div class="row m-0 card-body">
+<div class="row m-0 card-body" onclick="window.location='/api/admin/item/{{id}}'">
       <div class="col-1 text-truncate" ><p>{{id}}</p></div>
       <div class="col-2 text-truncate" ><p>{{category.name}}</p></div>
       <div class="col-2 text-truncate"><p>{{item_name}}</p></div>
