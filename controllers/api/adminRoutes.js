@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Transaction, Item, Employee, Category } = require('../../models');
+const { Transaction, Item, Employee , Category } = require('../../models');
 const { adminAuth } = require('../../utils/helpers');
 /* 
 The `/api/admin/` endpoint
@@ -11,9 +11,12 @@ router.get('/', adminAuth, async (req, res) => {
   try {
     const transactions = await Transaction.findAll({
       include: [
-        { model: Employee },
+        { model: Employee, attributes: {
+          exclude: ['password'],
+        }, },
         { model: Item, include: { model: Category } },
       ],
+      order: ['id'],   
     });
     // Serialize transaction data so templates can read it
     const transactionData = transactions.map((transaction) =>
@@ -49,6 +52,9 @@ router.get('/viewsummary', adminAuth, async (req, res) => {
     const employees = await Employee.findAll({
       where: {
         id: empIds,
+      },
+      attributes: {
+        exclude: ['password'],
       },
     });
 
@@ -127,9 +133,11 @@ router.get('/allitems', adminAuth, async (req, res) => {
     const items = await Item.findAll({
       include: [
         { model: Category },
-        { model: Transaction, include: [Employee] },
+        { model: Transaction, include: {model: Employee, attributes: {
+          exclude: ['password'],
+        },} },
       ],
-      order: ['id'],
+      order: ['id'],       
     });
     const unborrowedItemData = items.map((item) => item.get({ plain: true }));
 
@@ -259,7 +267,9 @@ router.get('/item/:id', adminAuth, async (req, res) => {
   try {
     const transactions = await Transaction.findAll({
       include: [
-        { model: Employee },
+        { model: Employee, attributes: {
+          exclude: ['password'],
+        }, },
         { model: Item, include: { model: Category } },
       ],
       where: { item_id: req.params.id },
