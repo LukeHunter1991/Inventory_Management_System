@@ -14,19 +14,25 @@ const categoryData = [
     name: 'Headset',
   },
   {
-    name: 'Docking Station'
+    name: 'Docking Station',
   },
   {
-    name: 'USB Flash Drive'
+    name: 'USB Flash Drive',
   },
   {
-    name: 'External Hard Drive'
+    name: 'External Hard Drive',
   },
 ];
 
-const seedCategories = () =>
-  Category.bulkCreate(categoryData, {
-    individualHooks: true,
-    returning: true,
-  });
+const seedCategories = async () => {
+  for (let index = 0; index < categoryData.length; index++) {
+    const result = await Category.create(categoryData[index]);
+  }
+};
+
+// Category.bulkCreate(categoryData, {
+//   individualHooks: true,
+//   returning: true,
+// });
+
 module.exports = seedCategories;

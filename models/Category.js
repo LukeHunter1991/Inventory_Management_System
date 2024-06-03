@@ -15,7 +15,7 @@ Category.init(
       type: DataTypes.STRING(30),
       allowNull: false,
       validate: {
-        isAlphanumeric: true,
+        is: /^[a-zA-Z0-9\s]+$/i,
         max: 30,
       },
     },
