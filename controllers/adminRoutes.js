@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { Transaction, Item, Employee, Category } = require('../../models');
-const { adminAuth } = require('../../utils/helpers');
+const { Transaction, Item, Employee, Category } = require('../models');
+const { adminAuth } = require('../utils/helpers');
 /* 
 The `/api/admin/` endpoint
 Route to display the admin dashboard with all the inventory status 
@@ -12,7 +12,8 @@ router.get('/', adminAuth, async (req, res) => {
     const transactions = await Transaction.findAll({
       include: [
         {
-          model: Employee, attributes: {
+          model: Employee,
+          attributes: {
             exclude: ['password'],
           },
         },
@@ -103,7 +104,6 @@ router.get('/viewitemcategorysummary', adminAuth, async (req, res) => {
       },
     });
 
-
     const categoryData = categories.map((category) =>
       category.get({ plain: true })
     );
@@ -136,11 +136,13 @@ router.get('/allitems', adminAuth, async (req, res) => {
       include: [
         { model: Category },
         {
-          model: Transaction, include: {
-            model: Employee, attributes: {
+          model: Transaction,
+          include: {
+            model: Employee,
+            attributes: {
               exclude: ['password'],
             },
-          }
+          },
         },
       ],
       order: ['id'],
@@ -229,10 +231,11 @@ router.get('/category', adminAuth, async (req, res) => {
 
     // Add category count to the categoryData object array.
     for (i = 0; i < categoryData.length; i++) {
-      catCount[i] ? categoryData[i].count = catCount[i].count : categoryData[i].count = '0'
+      catCount[i]
+        ? (categoryData[i].count = catCount[i].count)
+        : (categoryData[i].count = '0');
       console.log(categoryData);
     }
-
 
     res.render('category-dashboard', {
       categoryData: categoryData,
@@ -274,7 +277,8 @@ router.get('/item/:id', adminAuth, async (req, res) => {
     const transactions = await Transaction.findAll({
       include: [
         {
-          model: Employee, attributes: {
+          model: Employee,
+          attributes: {
             exclude: ['password'],
           },
         },
@@ -297,7 +301,6 @@ router.get('/item/:id', adminAuth, async (req, res) => {
   }
 });
 
-
 router.get('/allitems/:choice', adminAuth, async (req, res) => {
   try {
     const items = await Item.findAll({
@@ -319,6 +322,5 @@ router.get('/allitems/:choice', adminAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;

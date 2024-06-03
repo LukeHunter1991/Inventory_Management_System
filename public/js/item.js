@@ -9,7 +9,7 @@ const createItemFormHandler = async (event) => {
   const category_id = document.querySelector('#category-id').value.trim();
 
   if (item_name && item_description && is_available && category_id) {
-    const response = await fetch('/api/admin/add-item', {
+    const response = await fetch('/admin/add-item', {
       method: 'POST',
       body: JSON.stringify({
         item_name,
@@ -21,7 +21,7 @@ const createItemFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/api/admin/allitems');
+      document.location.replace('/admin/allitems');
     } else {
       alert('Failed to create item');
     }

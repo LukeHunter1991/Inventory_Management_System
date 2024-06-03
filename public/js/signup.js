@@ -8,7 +8,7 @@ const signupFormHandler = async (event) => {
   const isAdmin = document.querySelector('#isadmin-signup').value.trim();
 
   if (firstname && lastname && email && password && isAdmin) {
-    const response = await fetch('/api/employee/signup/', {
+    const response = await fetch('/employee/signup/', {
       method: 'POST',
       body: JSON.stringify({ firstname, lastname, email, password, isAdmin }),
       headers: { 'Content-Type': 'application/json' },
@@ -16,9 +16,9 @@ const signupFormHandler = async (event) => {
 
     if (response.ok) {
       if (isAdmin === 'true') {
-        document.location.replace('/api/admin');
+        document.location.replace('/admin');
       } else {
-        document.location.replace('/api/employee');
+        document.location.replace('/employee');
       }
     } else {
       const jsonData = await response.json();
