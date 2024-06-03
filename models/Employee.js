@@ -18,12 +18,20 @@ Employee.init(
       autoIncrement: true,
     },
     first_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(30),
       allowNull: false,
+      validate: {
+        isAlphanumeric: true,
+        max: 30,
+      },
     },
     last_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(30),
       allowNull: false,
+      validate: {
+        isAlphanumeric: true,
+        max: 30,
+      },
     },
     email: {
       type: DataTypes.STRING,
