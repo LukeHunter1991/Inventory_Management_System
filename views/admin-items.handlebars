@@ -1,16 +1,16 @@
 <div class="row m-0 ps-5 py-3 fw-light"><p class="fs-3 m-0 p-0">All Inventory Items</p></div>
 {{!-- <div class="row m-0 ps-5 pt-5 fw-light"><p class="m-0 p-0"></p></div> --}}
 
-<form class="card shadow-sm chart mx-5 mt-4 filter-form">
+<form class="filter-form card shadow-sm chart mx-5 mt-4">
  <div class="row card-header m-0">
   
   <label for="filter" class="col-sm-2 col-form-label">Filter by:</label>
   
   <div class="col-sm-6">
-    <select id="filter" name="filter"  class="form-select">
-       <option>Category</option>
-       <option>Item Name</option>
-       <option>Status</option>
+    <select id="filter" name="filter" class="form-select">
+       <option value="category_id">Category</option>
+       <option value="item_name">Item Name</option>
+       <option value="is_available">Status</option>
     </select>
   </div>
   
