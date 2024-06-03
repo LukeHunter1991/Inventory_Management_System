@@ -25,7 +25,7 @@ module.exports = {
     if (!req.session.logged_in) {
       res.redirect('/');
     } else if (!req.session.is_admin) {
-      res.redirect('/api/employee');
+      res.redirect('/employee');
     } else {
       next();
     }

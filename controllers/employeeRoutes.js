@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { Employee, Transaction, Category, Item } = require('../../models');
+const { Employee, Transaction, Category, Item } = require('../models');
 // Import sequelize operators. Not operator used in /inventory-history route to get not null return date
 const { Op } = require('sequelize');
-const { withAuth } = require('../../utils/helpers');
+const { withAuth } = require('../utils/helpers');
 
 /* 
 The `/api/employee/login` endpoint
@@ -34,7 +34,8 @@ router.post('/login', async (req, res) => {
       });
       return;
     }
-    req.session.employee_name = (employeeData.first_name).charAt(0) + (employeeData.last_name).charAt(0);
+    req.session.employee_name =
+      employeeData.first_name.charAt(0) + employeeData.last_name.charAt(0);
     req.session.user_id = employeeData.id;
     req.session.is_admin = employeeData.is_admin;
     req.session.logged_in = true;
@@ -94,10 +95,15 @@ router.get('/', async (req, res) => {
       where: {
         employee_id: req.session.user_id,
       },
-      include: [{ model: Employee, attributes: {
-        exclude: ['password'],
-      },}, 
-        { model: Item }],
+      include: [
+        {
+          model: Employee,
+          attributes: {
+            exclude: ['password'],
+          },
+        },
+        { model: Item },
+      ],
     });
 
     // Serialize user data so templates can read it
@@ -283,9 +289,15 @@ router.get('/history', withAuth, async (req, res) => {
       where: {
         employee_id: req.session.user_id,
       },
-      include: [{ model: Employee, attributes: {
-        exclude: ['password'],
-      }, }, { model: Item }],
+      include: [
+        {
+          model: Employee,
+          attributes: {
+            exclude: ['password'],
+          },
+        },
+        { model: Item },
+      ],
     });
 
     // Serialize user data so templates can read it

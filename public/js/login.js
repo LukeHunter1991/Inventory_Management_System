@@ -5,7 +5,7 @@ const loginFormHandler = async (event) => {
   const password = document.querySelector('#password-login').value.trim();
 
   if (email && password) {
-    const response = await fetch('/api/employee/login', {
+    const response = await fetch('/employee/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
@@ -16,9 +16,9 @@ const loginFormHandler = async (event) => {
 
       /* Once the employee is authenticated, based on the role of employee: directed either to admin dashboard or employee dashboard */
       if (jsonData.employee.is_admin === true) {
-        document.location.replace('/api/admin');
+        document.location.replace('/admin');
       } else {
-        document.location.replace('/api/employee');
+        document.location.replace('/employee');
       }
     } else {
       const jsonData = await response.json();

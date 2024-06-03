@@ -5,13 +5,11 @@ const filterFormHandler = async (event) => {
 
   console.log(choice);
   if (choice) {
-
-    document.location.replace(`/api/admin/allitems/${choice}`);
+    document.location.replace(`/admin/allitems/${choice}`);
   } else {
     alert('Failed to filter');
   }
 };
-
 
 document
   .querySelector('.filter-form')

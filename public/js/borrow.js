@@ -4,17 +4,16 @@ const createTransactionHandler = async (event) => {
   const borrow_date = new Date();
 
   if (item_id) {
-    const response = await fetch('/api/employee/borrow', {
-      method:
-        'POST',
+    const response = await fetch('/employee/borrow', {
+      method: 'POST',
       body: JSON.stringify({ borrow_date, item_id }),
       headers: {
-        'Content-Type':
-          'application/json'
+        'Content-Type': 'application/json',
       },
     });
     if (response.ok) {
-      document.location.replace('/api/employee'); console.log(response);
+      document.location.replace('/employee');
+      console.log(response);
     } else {
       alert('Failed to create transaction.');
     }
