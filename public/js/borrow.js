@@ -4,7 +4,7 @@ const createTransactionHandler = async (event) => {
   const borrow_date = new Date();
 
   if (item_id) {
-    const response = await fetch('/employee/borrow', {
+    const response = await fetch('/api/item/borrow', {
       method: 'POST',
       body: JSON.stringify({ borrow_date, item_id }),
       headers: {
