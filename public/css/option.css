@@ -73,10 +73,13 @@ aside {
 
 aside .tab {
   margin: 0;
-  padding: 12.5px 60px 12.5px 40px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  padding-left: 32.5px;
+  padding-top: 12.5px;
+  padding-bottom: 12.5px;
+  /* padding: 12.5px 60px 12.5px 40px;
+  /* display: flex;
+  flex-direction: row; */
+  /* flex-wrap: nowrap; */
   align-items: baseline;
   line-height: 75%;
 }
@@ -197,4 +200,20 @@ aside .tab:hover {
 #emp-statistics {
   height: 60vh;
   width: 80vw;
+}
+
+@media screen and (max-width: 992px) {
+
+  .log-form {
+    margin-top: 10px;
+    position: relative;
+    right: 0;
+    bottom: 250px;
+  }
+
+  /* .add-btn {
+  background-color: red;
+  width: 100px;
+} */
+
 }
