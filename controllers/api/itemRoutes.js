@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Item, Transaction } = require('../../models');
-const { adminAuth } = require('../../utils/helpers');
+const { adminAuth, withAuth } = require('../../utils/helpers');
 
 /* 
 The `/api/item/add-item` endpoint
@@ -37,7 +37,7 @@ router.post('/add-item', adminAuth, async (req, res) => {
 The `/api/item/borrow` endpoint
 Route to create a borrow item request. 
 */
-router.post('/borrow', async (req, res) => {
+router.post('/borrow', withAuth, async (req, res) => {
   try {
     // Get employee id and item id to update transaction table
     const transactionData = {
@@ -73,7 +73,7 @@ router.post('/borrow', async (req, res) => {
 The `/api/item/return` endpoint
 Route to return a borrowed item. 
 */
-router.put('/return/:id', async (req, res) => {
+router.put('/return/:id', withAuth, async (req, res) => {
   try {
     // Create current date object to be inserted as return date
     const returnDate = {

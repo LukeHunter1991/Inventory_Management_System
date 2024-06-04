@@ -8,7 +8,7 @@ const { withAuth } = require('../utils/helpers');
 The `/api/employee/` endpoint
 Route to display the employee dashboard with all the borrowed items of the logged in employee. 
 */
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const employeeTransactions = await Transaction.findAll({
       where: {
@@ -45,7 +45,7 @@ router.get('/', async (req, res) => {
 The `/api/employee/current-inventory` endpoint
 Route to display active borrowed inventory only. 
 */
-router.get('/current-inventory', async (req, res) => {
+router.get('/current-inventory', withAuth, async (req, res) => {
   try {
     const currentItems = await Transaction.findAll({
       // Get transactions for relevant employee.
@@ -74,7 +74,7 @@ The `/api/employee/inventory-history` endpoint
 Route to display history of the borrowed inventory only. (Returned Items)
 */
 
-router.get('/inventory-history', async (req, res) => {
+router.get('/inventory-history', withAuth, async (req, res) => {
   try {
     const previousItems = await Transaction.findAll({
       // Get transactions for relevant employee.
@@ -103,7 +103,7 @@ router.get('/inventory-history', async (req, res) => {
 The `/api/employee/available` endpoint
 Route to see what items are available before submitting a borrow item request. 
 */
-router.get('/available', async (req, res) => {
+router.get('/available', withAuth, async (req, res) => {
   try {
     // Get all available items, including their category.
     const availableItems = await Item.findAll({
