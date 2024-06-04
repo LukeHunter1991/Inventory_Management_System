@@ -1,8 +1,10 @@
-// const router = require('express').Router();
-// const employeeRoutes = require('./employeeRoutes');
-// const adminRoutes = require('../adminRoutes');
+const router = require('express').Router();
+const categoryRoutes = require('./categoryRoutes');
+const itemRoutes = require('./itemRoutes');
+const userRoutes = require('./userRoutes');
 
-// router.use('/employee', employeeRoutes);
-// router.use('/admin', adminRoutes);
+router.use('/category', categoryRoutes);
+router.use('/item', itemRoutes);
+router.use('/user', userRoutes);
 
-// module.exports = router;
+module.exports = router;
