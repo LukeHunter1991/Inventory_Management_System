@@ -135,7 +135,7 @@ At login page you have to insert your details like email and password.
 ### IMS Sign Up Page
 At sign up page if you do not have an account you can create one.
 
-[<img src="./images/ims-signup.PNG" width="500" alt="GitHub screenshot." />](./images/ims-signup.PNG)
+[<img src="./images/ims-signup-2.PNG" width="500" alt="GitHub screenshot." />](./images/ims-signup-2.PNG)
 
 ### IMS Employee Dashboard
 IMS system redirects all pages to the individual dashboards excepts admin users. At employee dashboard, all current requests (borrowings) are displayed in the table with the option to return the item. If you click to return the item it will be removed from current list.
@@ -167,4 +167,4 @@ Copyright © 2024, [IMS Project Group](https://github.com/LukeHunter1991/Invento
 <a id="questions-and-contacts"></a>
 ## Questions and Contacts
 
-Questions about application can be reffered to the author's [GitHub account](https://github.com/LukeHunter1991) or you can [Contact Us](mailto:fill-up-your-emails) directly over an email.
+Questions about application can be reffered to the author's [GitHub account](https://github.com/LukeHunter1991) or you can [Contact Me](mailto:luke.hunter9@gmail.com) directly over an email.
