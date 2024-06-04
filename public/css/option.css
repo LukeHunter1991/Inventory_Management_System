@@ -2,19 +2,19 @@
   --primary: #514290;
   --secondary: #6e5bc2;
   --tertiary: #7e6cca;
-  --quatrinary: #f7f7f7;
+  --quatrinary: #DFE1FB;
+  --medium: #f7f7f7;
   --light: #ffffff;
   --dark: #22283c;
   --available: #d0ebd1;
   --unavailable: #faccca;
-  --electron-purple: #5553db;
+  --electron-purple: #555BCE;
 }
 
 body {
   margin: 0;
   box-sizing: border-box;
-
-  background-color: var(--quatrinary);
+  background-color: var(--medium);
 }
 
 a {
@@ -22,6 +22,7 @@ a {
   text-decoration: none;
 }
 
+/* -------------------top nav stripe-------------------------- */
 nav {
   padding: 15px;
   display: flex;
@@ -56,13 +57,14 @@ nav span {
   padding-top: 10px;
   margin-left: 20px;
   text-align: center;
-  background-color: #DFE1FB;
-  color: #555BCE;
+  background-color: var(--quatrinary);
+  color: var(--electron-purple);
   font-weight: bold;
 }
 
+/* -----------------aside navigation bar------------------------- */
 aside {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   flex: 0;
   background-color: var(--secondary);
   text-align: left;
@@ -89,6 +91,7 @@ aside .tab:hover {
   background-color: var(--tertiary);
 }
 
+/* ------------------the login/ signup form interface------------------------ */
 .background {
   min-height: 100vh;
   min-width: 100vw;
@@ -100,7 +103,7 @@ aside .tab:hover {
 
 .log-form {
   width: 650px;
-  background-color: white;
+  background-color: var(--light);
   margin: auto;
   margin-top: 50px;
   font-weight: bold;
@@ -109,7 +112,7 @@ aside .tab:hover {
 }
 
 .log-form span {
-  color: var(--electron-purple);
+  color: #5553db;
   font-weight: bolder;
 }
 
@@ -137,13 +140,14 @@ aside .tab:hover {
   font-size: 10.25px;
 }
 
+/* -----------------the charts in handlebars pages--------------------------- */
 .chart .row {
   border-bottom: 0.5px solid lightsteelblue;
   height: 54px;
 }
 
 .chart .row:hover {
-  background-color: var(--quatrinary)
+  background-color: var(--medium);
 }
 
 .chart p {
@@ -177,6 +181,7 @@ aside .tab:hover {
   background-color: var(--secondary);
 }
 
+/* --------------------chart js disgrams-------------------------- */
 .display-chart {
   position: relative;
   padding-left: 100px;

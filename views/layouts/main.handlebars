@@ -23,8 +23,8 @@
       </div>    
   </nav>
   
-  <main class="row g-0">
-      <aside class="col col-2">
+ <main class="row g-0" style="min-height: 100vh;">
+      <aside class="col col-12 col-lg-2">
         {{#if is_admin}}
          <div class="d-flex tab">          
           <a href="/admin">Transactions</a>
@@ -60,7 +60,7 @@
         {{/if}} 
       </aside>
 
-      <div class="col col-10">
+      <div class="col col-12 col-lg-10" style="min-width: 768px">
         {{{body}}}
       </div>
     </main>  
