@@ -6,7 +6,7 @@ const endTransactionHandler = async (event) => {
   const return_date = new Date();
   console.log(item_id);
   if (id) {
-    const response = await fetch(`/employee/return/${id}`, {
+    const response = await fetch(`api/item/return/${id}`, {
       method: 'PUT',
       body: JSON.stringify({ return_date, item_id }),
       headers: {
