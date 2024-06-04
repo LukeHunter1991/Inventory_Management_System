@@ -1,46 +1,47 @@
 <div class="row m-0 ps-5 py-3 fw-light"><p class="fs-3 m-0 p-0">Item Category Statistics</p></div>
 <div id="item-statistics" class="display-chart">
+ 
   <canvas id="item-category-chart" ></canvas>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
 
-const ctx2 = document.getElementById('item-category-chart').getContext("2d");
-var labelData2 = "{{categoryNames}}";
-const xValues2 = labelData2.split(',');
-
-var txncount2 = "{{itemcount}}";
-const txnValues2 = txncount2.split(',');
-const yValues2 = txnValues2.map(item => parseInt(item));
-
+const itemcategory = document.getElementById('item-category-chart').getContext("2d");
+// The expected data ie the categories from the controller are set on the xAxis of the pie chart
+var categorylabelData = "{{categoryNames}}";
+const xValuesCategories = categorylabelData.split(',');
+// The expected data ie the No of items per category from the controller are set on the yAxis of the pie chart
+var itemcount = "{{itemcount}}";
+const itemValues = itemcount.split(',');
+const yValuesItemCnt = itemValues.map(item => parseInt(item));
+// This is to update the data of the PIE chart in different colors.
 const autocolors = window['chartjs-plugin-autocolors'];
 Chart.register(autocolors);
 
-    new Chart(ctx2, {
+    new Chart(itemcategory, {
+      //Included the autocolors plugin to apply on the chart
        plugins: [
     autocolors
   ],
-      type: 'pie',
+      type: 'pie',//Specify the type of chart to be created
       data: {
         visible: true, 
-        labels: xValues2,
+        labels: xValuesCategories,
+         //datasets helps to customize the colors and labels
         datasets: [
           {
             label: 'Number of Items',
-            data: yValues2,
-            //borderWidth: 1,
-           //borderColor: '#36A2EB', // Border color
-           // backgroundColor: '#9BD0F5', // Background color
+            data: yValuesItemCnt,            
           },
         ],
       },
       options: {
         scales: {
           y: {
+             //customize the yAxis of the chart
             beginAtZero: true,
             max: 15,
             min: 0,
@@ -51,7 +52,7 @@ Chart.register(autocolors);
         },
         plugins : {
           autocolors :{
-            mode : 'data'
+            mode : 'data' 
           }
         },
       },
