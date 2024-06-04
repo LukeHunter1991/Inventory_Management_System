@@ -64,9 +64,13 @@ $ node seeds/seeds.js
 <a id="user-story"></a>
 ## User story 
 ```
-AS A business owner
-I WANT that my employees are able to borrow and manage inventory items in my company
-SO THAT I can organize and plan activities and run the business.
+AS an employee
+I WANT want to be able to borrow and return office equipment 
+SO THAT I can complete my tasks efficiently
+
+AS an administrator
+I WANT want to understand what items are available, what items are being used, and which employee is using them
+SO THAT I can effectively manage the intems in the inventory
 ```
 <a id="acceptance-criteria"></a>
 ## Acceptance criteria 
