@@ -38,7 +38,12 @@ router.post('/login', async (req, res) => {
     req.session.is_admin = employeeData.is_admin;
     req.session.logged_in = true;
 
-    res.json({ employee: employeeData, message: 'You are now logged in!' });
+    const { first_name, last_name, email, is_admin } = employeeData;
+
+    res.json({
+      employee: { first_name, last_name, email, is_admin },
+      message: 'You are now logged in!',
+    });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -75,9 +80,12 @@ router.post('/signup', async (req, res) => {
     req.session.is_admin = employeeData.is_admin;
     req.session.logged_in = true;
 
-    res
-      .status(200)
-      .json({ employee: employeeData, message: 'You are now logged in!' });
+    const { first_name, last_name, email, is_admin } = employeeData;
+
+    res.status(200).json({
+      employee: { first_name, last_name, email, is_admin },
+      message: 'You are now logged in!',
+    });
   } catch (err) {
     res.status(400).json(err);
   }
