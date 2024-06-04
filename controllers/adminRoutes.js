@@ -221,6 +221,7 @@ router.get('/item', adminAuth, async (req, res) => {
   }
 });
 
+// Route to show specific items history
 router.get('/item/:id', adminAuth, async (req, res) => {
   try {
     const transactions = await Transaction.findAll({
@@ -250,6 +251,7 @@ router.get('/item/:id', adminAuth, async (req, res) => {
   }
 });
 
+// Route to filter the all items table
 router.get('/allitems/:choice', adminAuth, async (req, res) => {
   try {
     const items = await Item.findAll({
