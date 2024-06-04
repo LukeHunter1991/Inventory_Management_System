@@ -4,7 +4,7 @@ const categoryFormHandler = async (event) => {
   const categoryname = document.querySelector('#category-name').value.trim();
 
   if (categoryname) {
-    const response = await fetch('/admin/add-category', {
+    const response = await fetch('/api/category/add-category', {
       method: 'POST',
       body: JSON.stringify({ categoryname }),
       headers: { 'Content-Type': 'application/json' },

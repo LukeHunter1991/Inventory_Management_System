@@ -7,10 +7,10 @@ Route to display the login page. If the employee is already logged in then redir
 router.get('/', (req, res) => {
   // If a session exists, redirect the request to the homepage
   if (req.session.logged_in && req.session.is_admin) {
-    res.redirect('/api/admin');
+    res.redirect('/admin');
     return;
   } else if (req.session.logged_in && !req.session.is_admin) {
-    res.redirect('/api/employee');
+    res.redirect('/employee');
     return;
   }
 
@@ -25,10 +25,10 @@ router.get('/signup', (req, res) => {
   // If a session exists, redirect the request to the homepage
 
   if (req.session.logged_in && req.session.is_admin) {
-    res.redirect('/api/admin');
+    res.redirect('/admin');
     return;
   } else if (req.session.logged_in && !req.session.is_admin) {
-    res.redirect('/api/employee');
+    res.redirect('/employee');
     return;
   }
 

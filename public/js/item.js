@@ -9,7 +9,7 @@ const createItemFormHandler = async (event) => {
   const category_id = document.querySelector('#category-id').value.trim();
 
   if (item_name && item_description && is_available && category_id) {
-    const response = await fetch('/admin/add-item', {
+    const response = await fetch('/api/item/add-item', {
       method: 'POST',
       body: JSON.stringify({
         item_name,
