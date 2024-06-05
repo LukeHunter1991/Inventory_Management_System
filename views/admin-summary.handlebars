@@ -4,59 +4,9 @@
   <canvas id="emp-txn-chart" ></canvas>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/chartDisplay.js"></script>
 
 <script>
-
-const ctx = document.getElementById('emp-txn-chart').getContext("2d");
-// The expected data ie the employees from the controller are set on the xAxis of the bar chart
-var emplabelData = "{{empNames}}";
-const xValues = emplabelData.split(',');
-// The expected data ie the No of transaction per employee from the controller are set on the yAxis of the pie chart
-var txncount = "{{txncount}}";
-const txnValues = txncount.split(',');
-const yValues = txnValues.map(item => parseInt(item));
-const autocolors = window['chartjs-plugin-autocolors'];
-Chart.register(autocolors);
-
-    new Chart(ctx, {
-       //Included the autocolors plugin to apply on the chart
-       plugins: [
-    autocolors
-  ],
-      type: 'bar', //Specify the type of chart to be created
-      data: {
-        visible: true, 
-        labels: xValues,
-          //datasets helps to customize the colors and labels
-        datasets: [
-          {
-            label: 'Number of Transactions',
-            data: yValues,
-           borderWidth: 1,
-           borderColor: '#8d7cbb', // Border color
-           backgroundColor: '#8d7cbb', // Background color overides the autocolors.
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-             //customize the yAxis of the chart
-            beginAtZero: true,
-            max: 30,            
-            ticks: {
-                stepSize: 1
-            }
-          },
-        },
-        plugins : {
-          autocolors :{
-            mode : 'data'
-          }
-        },
-      },
-     
-    });   
+ const autocolors = window['chartjs-plugin-autocolors'];
+  displayChart('emp-txn-chart',autocolors,"{{empNames}}", "{{txncount}}");  
 </script>
