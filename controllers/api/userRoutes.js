@@ -58,7 +58,7 @@ Route to create a new employee
   "lastname": "Allen",
   "email" : "allen@abc.com",
   "password" : "password123",
-  "isAdmin": "true/false",
+  
 }
 */
 router.post('/signup', async (req, res) => {
@@ -66,7 +66,8 @@ router.post('/signup', async (req, res) => {
     // All the fields you can create and the data attached to the request body.
     //firstname, lastname, email, password, isAdmin
 
-    let isAdmin = req.body.isAdmin === 'true';
+    let isAdmin = false;
+    
 
     const employeeData = await Employee.create({
       first_name: req.body.firstname,

@@ -4,58 +4,9 @@
   <canvas id="item-category-chart" ></canvas>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/chartDisplay.js"></script>
 
 <script>
-
-const itemcategory = document.getElementById('item-category-chart').getContext("2d");
-// The expected data ie the categories from the controller are set on the xAxis of the pie chart
-var categorylabelData = "{{categoryNames}}";
-const xValuesCategories = categorylabelData.split(',');
-// The expected data ie the No of items per category from the controller are set on the yAxis of the pie chart
-var itemcount = "{{itemcount}}";
-const itemValues = itemcount.split(',');
-const yValuesItemCnt = itemValues.map(item => parseInt(item));
-// This is to update the data of the PIE chart in different colors.
-const autocolors = window['chartjs-plugin-autocolors'];
-Chart.register(autocolors);
-
-    new Chart(itemcategory, {
-      //Included the autocolors plugin to apply on the chart
-       plugins: [
-    autocolors
-  ],
-      type: 'pie',//Specify the type of chart to be created
-      data: {
-        visible: true, 
-        labels: xValuesCategories,
-         //datasets helps to customize the colors and labels
-        datasets: [
-          {
-            label: 'Number of Items',
-            data: yValuesItemCnt,            
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-             //customize the yAxis of the chart
-            beginAtZero: true,
-            max: 15,
-            min: 0,
-            ticks: {
-                stepSize: 1
-            }
-          },
-        },
-        plugins : {
-          autocolors :{
-            mode : 'data' 
-          }
-        },
-      },
-    });
-   
+ const autocolors = window['chartjs-plugin-autocolors'];
+  displayChart('item-category-chart',autocolors,"{{categoryNames}}", "{{itemcount}}");   
 </script>

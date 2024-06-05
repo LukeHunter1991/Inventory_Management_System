@@ -25,11 +25,15 @@ router.get('/signup', (req, res) => {
   // If a session exists, redirect the request to the homepage
 
   if (req.session.logged_in && req.session.is_admin) {
-    res.redirect('/admin');
-    return;
+    req.session.destroy(() => {
+      res.redirect('/signup');
+      return;
+    });
   } else if (req.session.logged_in && !req.session.is_admin) {
-    res.redirect('/employee');
-    return;
+    req.session.destroy(() => {
+      res.redirect('/signup');
+      return;
+    });
   }
 
   res.render('signup');
